@@ -43,6 +43,6 @@ public:
     virtual unsigned int size() = 0;
 };
 
-class Figure: public IGeoFig, public IPhysObject, public IPrintable, public IDialogInitiable, public BaseCObject {};
+class IFigure: public IGeoFig, public IPhysObject, public IPrintable, public IDialogInitiable, public BaseCObject {};
 
 #endif

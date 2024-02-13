@@ -3,7 +3,7 @@
 #include "Virtuals.h"
 
 
-class Equilateral_Triangle : Figure {
+class Equilateral_Triangle : public IFigure {
 private:
 
     CVector2D p1;
@@ -11,7 +11,7 @@ private:
     CVector2D p3;
 
     double weight = 0;
-    const char* name = "Parallelogram";
+    const char* name = "Equilateral Triangle";
 
 public:
 

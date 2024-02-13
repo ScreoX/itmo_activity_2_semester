@@ -3,7 +3,7 @@
 #include "Virtuals.h"
 
 
-class Parallelogram : Figure {
+class Parallelogram : public IFigure {
 private:
 
     CVector2D p1;
@@ -16,7 +16,7 @@ private:
 
 public:
 
-    Parallelogram() ;
+    Parallelogram();
 
     double square() override;
     double perimeter() override;

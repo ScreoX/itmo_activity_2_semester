@@ -45,28 +45,28 @@ CVector2D Parallelogram::position() {
 }
 
 void Parallelogram::draw() {
-    std::cout<<"Name of the Figure: " << name << '\n';
-    std::cout<<"Position of the Figure: " << position() << '\n';
+    std::cout<<"Name of the Figure: " << classname() << '\n';
+    std::cout<<"Position of center of the Figure: " << position() << '\n';
     std::cout<<"Weight of the Figure: " << weight << '\n';
-    std::cout<<"Name of the Figure: " << name << '\n';
+    std::cout<<'\n';
 }
 
 void Parallelogram::initFromDialog() {
 
     std::cout << "Enter cords of the Parallelogram:\n"
-                 "First cord: ";
+                 "First cord:\n";
     std::cin>> p1;
 
-    std::cout << "Second cord: ";
+    std::cout << "Second cord:\n";
     std::cin >> p2;
 
-    std::cout << "Third cord: ";
+    std::cout << "Third cord:\n";
     std::cin >> p3;
 
-    std::cout << "Fourth cord: ";
+    std::cout << "Fourth cord:\n";
     std::cin >> p4;
 
-    std::cout << "Weight ";
+    std::cout << "Weight:\n";
     std::cin >> weight;
 
 }
