@@ -50,4 +50,10 @@ Complex Complex::operator*=(double num) {
     return {};
 }
 
+Complex::operator double() const {
+    double lenght = sqrt(re*re + im*im);
+
+    return lenght;
+}
+
 

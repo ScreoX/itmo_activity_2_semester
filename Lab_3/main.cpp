@@ -9,10 +9,10 @@ int main() {
     Complex b(3, 6);
 
     Complex c = a * b;
-    double l = c|=c;
+    double lenght = static_cast<double>(c);
 
     std::cout << "Complex number c: " << c.re << " + " << c.im << "i\n"
-                                                                "Lenght: " << l << '\n';
+                                                                "Lenght: " << lenght << '\n';
 
     int num = 2;
     a *= num;

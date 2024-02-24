@@ -19,6 +19,7 @@ public:
     Complex operator*=(double num);
     Complex operator+(Complex& another) const;
     double operator|=(Complex& same) const;
+    operator double() const;
 
 };
 
