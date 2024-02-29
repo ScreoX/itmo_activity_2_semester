@@ -43,14 +43,14 @@ int main() {
     auto i = CircularBuffer<int>::MyIterator(my_vector.begin());
 
     std::cout << "Push 2 by iterator\n";
-    my_vector.push_by_iterator(i, 2);
+    my_vector.push_by_iterator(i + 6, 2);
     for (int j : my_vector) {
         std::cout << j << " ";
     }
     std::cout << "---- Temp size: " << my_vector.size();
 
     std::cout << "\nDelete 9 by iterator\n";
-    my_vector.pop_by_iterator(my_vector.begin() + 1);
+    my_vector.pop_by_iterator(my_vector.begin() + 10);
     for (int j : my_vector) {
         std::cout << j << " ";
     }

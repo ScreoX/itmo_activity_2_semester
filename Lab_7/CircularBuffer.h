@@ -50,6 +50,7 @@ public:
             return *this;
         }
 
+
         MyIterator operator-(T val) {
             _data = _data - val;
             return *this;
@@ -166,18 +167,18 @@ public:
 
     void push_by_iterator(MyIterator i, T val) {
         int ind = i - begin();
-        _buffer[ind % _capacity] = val;
+        _buffer[ind % _size] = val;
     }
 
     T pop_by_iterator(MyIterator i) {
         // удаление по итератору из произвольного места
         if (_size != 0) {
             T val = *i;
-            int ind = (i - begin());
+            int ind = (i - begin()) % _size;
 
 
-            for (int iter = ind; iter < _size; iter++) {
-                _buffer[(i - begin() + iter - 1) % _capacity] = _buffer[(i - begin() + iter) % _capacity];
+            for (int iter = ind; iter < _size - 1; iter++) {
+                _buffer[(iter) % _size] = _buffer[(iter + 1) % _size];
             }
             --_size;
 
