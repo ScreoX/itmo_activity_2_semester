@@ -1,15 +1,18 @@
 cmake_minimum_required(VERSION 3.27)
-project(cube_rube)
+project(lrcube)
 
 set(CMAKE_CXX_STANDARD 17)
 
 add_subdirectory(lib)
-add_executable(${PROJECT_NAME}
-        main.cpp
-        Algorighms.cpp
-        Algorighms.h
-        Cube.cpp
-        Cube.h
+add_executable(${PROJECT_NAME} main.cpp
+        MainCube.h
+        Squares.h
+        VisualisationCube.h
+        MainCube.cpp
+        Squares.cpp
+        VisualisationCube.cpp
+        Colors.h
+        Colors.cpp
 )
 
 target_link_libraries(${PROJECT_NAME}
