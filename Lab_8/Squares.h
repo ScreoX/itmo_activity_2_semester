@@ -9,7 +9,7 @@
 #ifndef LRCUBE_SMALLCUBE_H
 #define LRCUBE_SMALLCUBE_H
 
-class Squares{
+class Squares {
 private:
     float X;
     float Y;
@@ -36,6 +36,8 @@ public:
     void SetX(float x);
     void SetY(float y);
     void SetZ(float z);
+    void FindSide(int index, int id);
+    char Side(int ind);
 
     void turnleft(); // 0->1 1->2 2->3 3->0
     void turnright(); // 0->3 1->0 2->1 3->2

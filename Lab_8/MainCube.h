@@ -1,5 +1,5 @@
 #include "Squares.h"
-
+#include "vector"
 #ifndef RUBIK_CUBE_CUBE_H
 #define RUBIK_CUBE_CUBE_H
 
@@ -12,10 +12,22 @@ enum Combinations {
     round_right,
 };
 
-enum Levels {
-    high_or_left = 0,
-    middle_or_central,
-    low_or_right
+enum LevelsHorizontal {
+    lowHor = 0,
+    middleHor,
+    upHor,
+};
+
+enum LevelsVertical {
+    leftVert = 0,
+    centralVert,
+    rightVert,
+};
+
+enum LevelsAround {
+    farAround = 0,
+    centerAround,
+    nearAround,
 };
 
 class MainCube {
@@ -26,10 +38,11 @@ private:
     float size = 1.0f;
 public:
     Squares squares[3][3][3];
+    std::vector<std::pair<char,char>> stackSolve;
+
     void turnHorizontal(int hor, int mode);
     void turnVertical(int ver, int mode);
-    void turnAround(int ver, int mode);
-    void SetSize(float size);
+    void turnAround(int side, int mode);
     void shuffle();
     bool is_correct();
     void solve();
@@ -45,4 +58,4 @@ public:
     void al6(); // ориентация верхних угловых кубиков
 };
 
-#endif //RUBIK_CUBE_CUBE_H
+#endif
