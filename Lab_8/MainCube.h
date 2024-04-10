@@ -32,9 +32,7 @@ enum LevelsAround {
 
 class MainCube {
 private:
-    float X = 0;
-    float Z = 0;
-    float Y = 0;
+    CordsSquares cords = {0,0,0};
     float size = 1.0f;
 public:
     Squares squares[3][3][3];
@@ -49,13 +47,6 @@ public:
 
     void Draw(std::vector<Colors*> shaders, glm::mat4 MVP);
     void Init();
-
-    void al1(); // нижний крест
-    void al2(); // нижний полный часть среднего
-    void al3(); // два нижних слоя
-    void al4(); // верхний крест
-    void al5(); // угловые верх на свои места
-    void al6(); // ориентация верхних угловых кубиков
 };
 
 #endif

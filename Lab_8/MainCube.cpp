@@ -1,36 +1,6 @@
 #include "MainCube.h"
 #include "windows.h"
 
-void MainCube::shuffle() {
-    int countOperations = 5;
-
-    FILE* save = fopen("../OutputAndInput/input.txt", "w");
-    char way, id, orientation;
-    for (int i = 0; i < countOperations; i++) {
-        way = rand()%3;
-        id = rand()%3;
-        if (way == 0) {
-            orientation = rand() % 2 + 2;
-            turnHorizontal(id, orientation, true);
-        }
-        else if (way == 1){
-            orientation = rand() % 2;
-            turnVertical(id, orientation, true);
-        }
-        else {
-            orientation = rand() % 2 + 4;
-            turnAround(id, orientation, true);
-        }
-        glLoadIdentity();
-        glFinish();
-        std::putc(way+97,save);
-        std::putc(id+97,save);
-        std::putc(orientation+98,save);
-    }
-
-    std::fclose(save);
-}
-
 void MainCube::Draw(std::vector<Colors*> colors, glm::mat4 MVP) {
     for (int x = 0; x < 3; x++) {
         for (int y = 0; y < 3; y++) {
@@ -42,14 +12,15 @@ void MainCube::Draw(std::vector<Colors*> colors, glm::mat4 MVP) {
 }
 
 void MainCube::Init() {
-    X = Y = Z = 0;
+    cords.x = 0;
+    cords.y = 0;
+    cords.z = 0;
     size = 1.0f;
+
     for (int x = 0; x < 3; x++) {
         for (int y = 0; y < 3; y++) {
             for (int z = 0; z < 3; z++) {
-                squares[x][y][z].SetX(float(x - 1)*(size/3));
-                squares[x][y][z].SetY(float(y - 1)*(size/3));
-                squares[x][y][z].SetZ(float(z - 1)*(size/3));
+                squares[x][y][z].ChangeCords(float(x - 1)*(size/3), float(y - 1)*(size/3), float(z - 1)*(size/3));
                 squares[x][y][z].Init(size);
             }
         }
@@ -80,33 +51,33 @@ void MainCube::turnVertical(int ver, int orientation, bool flag) {
 
     if (orientation == down) {
         for (int i = 0; i < 6; i++) {
-            squares[ver][2][0].FindSide(i, move_1.Side(i));
-            squares[ver][2][2].FindSide(i, move_4.Side(i));
-            squares[ver][0][0].FindSide(i, move_2.Side(i));
-            squares[ver][0][2].FindSide(i, move_3.Side(i));
+            squares[ver][2][0].FindSide(i, move_1.sides_colors[i]);
+            squares[ver][2][2].FindSide(i, move_4.sides_colors[i]);
+            squares[ver][0][0].FindSide(i, move_2.sides_colors[i]);
+            squares[ver][0][2].FindSide(i, move_3.sides_colors[i]);
         }
         move_1 = squares[ver][1][0], move_2 = squares[ver][0][1], move_3 = squares[ver][1][2], move_4 = squares[ver][2][1];
 
         for (int i = 0; i < 6; i++) {
-            squares[ver][1][0].FindSide(i, move_2.Side(i));
-            squares[ver][0][1].FindSide(i, move_3.Side(i));
-            squares[ver][1][2].FindSide(i, move_4.Side(i));
-            squares[ver][2][1].FindSide(i, move_1.Side(i));
+            squares[ver][1][0].FindSide(i, move_2.sides_colors[i]);
+            squares[ver][0][1].FindSide(i, move_3.sides_colors[i]);
+            squares[ver][1][2].FindSide(i, move_4.sides_colors[i]);
+            squares[ver][2][1].FindSide(i, move_1.sides_colors[i]);
         }
     }
     else if (orientation == up) {
         for (int i = 0; i < 6; i++) {
-            squares[ver][2][0].FindSide(i, move_3.Side(i));
-            squares[ver][0][2].FindSide(i, move_1.Side(i));
-            squares[ver][2][2].FindSide(i, move_2.Side(i));
-            squares[ver][0][0].FindSide(i, move_4.Side(i));
+            squares[ver][2][0].FindSide(i, move_3.sides_colors[i]);
+            squares[ver][0][2].FindSide(i, move_1.sides_colors[i]);
+            squares[ver][2][2].FindSide(i, move_2.sides_colors[i]);
+            squares[ver][0][0].FindSide(i, move_4.sides_colors[i]);
         }
         move_1 = squares[ver][1][0], move_2 = squares[ver][0][1], move_3 = squares[ver][1][2], move_4 = squares[ver][2][1];
         for (int i = 0; i < 6; i++) {
-            squares[ver][1][0].FindSide(i, move_4.Side(i));
-            squares[ver][0][1].FindSide(i, move_1.Side(i));
-            squares[ver][1][2].FindSide(i, move_2.Side(i));
-            squares[ver][2][1].FindSide(i, move_3.Side(i));
+            squares[ver][1][0].FindSide(i, move_4.sides_colors[i]);
+            squares[ver][0][1].FindSide(i, move_1.sides_colors[i]);
+            squares[ver][1][2].FindSide(i, move_2.sides_colors[i]);
+            squares[ver][2][1].FindSide(i, move_3.sides_colors[i]);
         }
     }
 }
@@ -133,32 +104,32 @@ void MainCube::turnHorizontal(int indHor, int orientation, bool flag) {
     Squares move_1 = squares[0][indHor][0], move_2 = squares[0][indHor][2], move_3 = squares[2][indHor][2], move_4 = squares[2][indHor][0];
     if (orientation == right) {
         for (int i = 0; i < 6; i++) {
-            squares[0][indHor][2].FindSide(i, move_1.Side(i));
-            squares[2][indHor][2].FindSide(i, move_2.Side(i));
-            squares[2][indHor][0].FindSide(i, move_3.Side(i));
-            squares[0][indHor][0].FindSide(i, move_4.Side(i));
+            squares[0][indHor][2].FindSide(i, move_1.sides_colors[i]);
+            squares[2][indHor][2].FindSide(i, move_2.sides_colors[i]);
+            squares[2][indHor][0].FindSide(i, move_3.sides_colors[i]);
+            squares[0][indHor][0].FindSide(i, move_4.sides_colors[i]);
         }
         move_1 = squares[1][indHor][0], move_2 = squares[0][indHor][1], move_3 = squares[1][indHor][2], move_4 = squares[2][indHor][1];
         for (int i = 0; i < 6; i++) {
-            squares[0][indHor][1].FindSide(i,move_1.Side(i));
-            squares[1][indHor][2].FindSide(i,move_2.Side(i));
-            squares[2][indHor][1].FindSide(i,move_3.Side(i));
-            squares[1][indHor][0].FindSide(i,move_4.Side(i));
+            squares[0][indHor][1].FindSide(i,move_1.sides_colors[i]);
+            squares[1][indHor][2].FindSide(i,move_2.sides_colors[i]);
+            squares[2][indHor][1].FindSide(i,move_3.sides_colors[i]);
+            squares[1][indHor][0].FindSide(i,move_4.sides_colors[i]);
         }
     }
     else {
         for (int i = 0; i < 6; i++) {
-            squares[2][indHor][0].FindSide(i,move_1.Side(i));
-            squares[2][indHor][2].FindSide(i,move_4.Side(i));
-            squares[0][indHor][0].FindSide(i,move_2.Side(i));
-            squares[0][indHor][2].FindSide(i,move_3.Side(i));
+            squares[2][indHor][0].FindSide(i,move_1.sides_colors[i]);
+            squares[2][indHor][2].FindSide(i,move_4.sides_colors[i]);
+            squares[0][indHor][0].FindSide(i,move_2.sides_colors[i]);
+            squares[0][indHor][2].FindSide(i,move_3.sides_colors[i]);
         }
         move_1 = squares[1][indHor][0], move_2 = squares[0][indHor][1], move_3 = squares[1][indHor][2], move_4 = squares[2][indHor][1];
         for (int i = 0; i < 6; i++) {
-            squares[2][indHor][1].FindSide(i,move_1.Side(i));
-            squares[1][indHor][0].FindSide(i,move_2.Side(i));
-            squares[0][indHor][1].FindSide(i,move_3.Side(i));
-            squares[1][indHor][2].FindSide(i,move_4.Side(i));
+            squares[2][indHor][1].FindSide(i,move_1.sides_colors[i]);
+            squares[1][indHor][0].FindSide(i,move_2.sides_colors[i]);
+            squares[0][indHor][1].FindSide(i,move_3.sides_colors[i]);
+            squares[1][indHor][2].FindSide(i,move_4.sides_colors[i]);
         }
     }
 }
@@ -188,37 +159,67 @@ void MainCube::turnAround(int edge, int orientation, bool flag) {
     Squares move_1 = squares[0][0][edge], move_2 = squares[2][0][edge], move_3 = squares[2][2][edge], move_4 = squares[0][2][edge];
     if (orientation == round_left) {
         for (int i = 0; i < 6; i++) {
-            squares[2][0][edge].FindSide(i,move_1.Side(i));
-            squares[2][2][edge].FindSide(i,move_2.Side(i));
-            squares[0][2][edge].FindSide(i,move_3.Side(i));
-            squares[0][0][edge].FindSide(i,move_4.Side(i));
+            squares[2][0][edge].FindSide(i,move_1.sides_colors[i]);
+            squares[2][2][edge].FindSide(i,move_2.sides_colors[i]);
+            squares[0][2][edge].FindSide(i,move_3.sides_colors[i]);
+            squares[0][0][edge].FindSide(i,move_4.sides_colors[i]);
         }
         move_1 = squares[0][1][edge], move_2 = squares[1][2][edge], move_3 = squares[2][1][edge], move_4 = squares[1][0][edge];
         for (int i = 0; i < 6; i++) {
-            squares[2][1][edge].FindSide(i,move_4.Side(i));
-            squares[1][2][edge].FindSide(i,move_3.Side(i));
-            squares[0][1][edge].FindSide(i,move_2.Side(i));
-            squares[1][0][edge].FindSide(i,move_1.Side(i));
+            squares[2][1][edge].FindSide(i,move_4.sides_colors[i]);
+            squares[1][2][edge].FindSide(i,move_3.sides_colors[i]);
+            squares[0][1][edge].FindSide(i,move_2.sides_colors[i]);
+            squares[1][0][edge].FindSide(i,move_1.sides_colors[i]);
         }
     }
     else if (orientation == round_right) {
         for (int i = 0; i < 6; i++) {
-            squares[0][2][edge].FindSide(i,move_1.Side(i));
-            squares[2][2][edge].FindSide(i,move_4.Side(i));
-            squares[2][0][edge].FindSide(i,move_3.Side(i));
-            squares[0][0][edge].FindSide(i,move_2.Side(i));
+            squares[0][2][edge].FindSide(i,move_1.sides_colors[i]);
+            squares[2][2][edge].FindSide(i,move_4.sides_colors[i]);
+            squares[2][0][edge].FindSide(i,move_3.sides_colors[i]);
+            squares[0][0][edge].FindSide(i,move_2.sides_colors[i]);
         }
         move_1 = squares[0][1][edge], move_2 = squares[1][2][edge], move_3 = squares[2][1][edge], move_4 = squares[1][0][edge];
         for (int i = 0; i < 6; i++) {
-            squares[1][2][edge].FindSide(i,move_1.Side(i));
-            squares[2][1][edge].FindSide(i,move_2.Side(i));
-            squares[1][0][edge].FindSide(i,move_3.Side(i));
-            squares[0][1][edge].FindSide(i,move_4.Side(i));
+            squares[1][2][edge].FindSide(i,move_1.sides_colors[i]);
+            squares[2][1][edge].FindSide(i,move_2.sides_colors[i]);
+            squares[1][0][edge].FindSide(i,move_3.sides_colors[i]);
+            squares[0][1][edge].FindSide(i,move_4.sides_colors[i]);
         }
     }
 }
 
-void MainCube::solve() { // не работает время
+void MainCube::shuffle() {
+    int countOperations = 5;
+
+    FILE* save = fopen("../OutputAndInput/input.txt", "w");
+    char way, id, orientation;
+    for (int i = 0; i < countOperations; i++) {
+        way = rand()%3;
+        id = rand()%3;
+        if (way == 0) {
+            orientation = rand() % 2 + 2;
+            turnHorizontal(id, orientation, true);
+        }
+        else if (way == 1){
+            orientation = rand() % 2;
+            turnVertical(id, orientation, true);
+        }
+        else {
+            orientation = rand() % 2 + 4;
+            turnAround(id, orientation, true);
+        }
+        glLoadIdentity();
+        glFinish();
+        std::putc(way+97,save);
+        std::putc(id+97,save);
+        std::putc(orientation+98,save);
+    }
+
+    std::fclose(save);
+}
+
+void MainCube::solve() {
 
         auto [index, operation] = stackSolve.back();
         stackSolve.pop_back();

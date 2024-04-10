@@ -2,120 +2,120 @@
 
 void Squares::Draw(std::vector<Colors *> shaders, glm::mat4 MVP) {
     std::vector<float> edges;
-    //front
 
-    for (float i: faceLeftUp) {
+    // Front Side
+    for (float i: all_sides.frontLeftUp) {
         edges.push_back(i);
     }
 
-    for (float i: faceLeftBottom) {
+    for (float i: all_sides.frontLeftBottom) {
         edges.push_back(i);
     }
-    for (float i: faceRightBottom) {
+    for (float i: all_sides.frontRightBottom) {
         edges.push_back(i);
     }
-    for (float i: faceLeftUp) {
+    for (float i: all_sides.frontLeftUp) {
         edges.push_back(i);
     }
-    for (float i: faceRightBottom) {
+    for (float i: all_sides.frontRightBottom) {
         edges.push_back(i);
     }
-    for (float i: faceRightUp) {
+    for (float i: all_sides.frontRightUp) {
         edges.push_back(i);
     }
-    //left
-    for (float i: faceLeftBottom) {
+    // Left Side
+    for (float i: all_sides.frontLeftBottom) {
         edges.push_back(i);
     }
-    for (float i: backLeftUp) {
+    for (float i: all_sides.backLeftUp) {
         edges.push_back(i);
     }
-    for (float i: backLeftBottom) {
+    for (float i: all_sides.backLeftBottom) {
         edges.push_back(i);
     }
-    for (float i: faceLeftBottom) {
+    for (float i: all_sides.frontLeftBottom) {
         edges.push_back(i);
     }
-    for (float i: backLeftUp) {
+    for (float i: all_sides.backLeftUp) {
         edges.push_back(i);
     }
-    for (float i: faceLeftUp) {
+    for (float i: all_sides.frontLeftUp) {
         edges.push_back(i);
     }
-    //back
-    for (float i: backLeftUp) {
+    // Back Side
+    for (float i: all_sides.backLeftUp) {
         edges.push_back(i);
     }
-    for (float i: backLeftBottom) {
+    for (float i: all_sides.backLeftBottom) {
         edges.push_back(i);
     }
-    for (float i: backRightBottom) {
+    for (float i: all_sides.backRightBottom) {
         edges.push_back(i);
     }
-    for (float i: backLeftUp) {
+    for (float i: all_sides.backLeftUp) {
         edges.push_back(i);
     }
-    for (float i: backRightBottom) {
+    for (float i: all_sides.backRightBottom) {
         edges.push_back(i);
     }
-    for (float i: backRightUp) {
+    for (float i: all_sides.backRightUp) {
         edges.push_back(i);
     }
-    //right
-    for (float i: faceRightBottom) {
+    // Right Side
+    for (float i: all_sides.frontRightBottom) {
         edges.push_back(i);
     }
-    for (float i: backRightUp) {
+    for (float i: all_sides.backRightUp) {
         edges.push_back(i);
     }
-    for (float i: backRightBottom) {
+    for (float i: all_sides.backRightBottom) {
         edges.push_back(i);
     }
-    for (float i: faceRightBottom) {
+    for (float i: all_sides.frontRightBottom) {
         edges.push_back(i);
     }
-    for (float i: backRightUp) {
+    for (float i: all_sides.backRightUp) {
         edges.push_back(i);
     }
-    for (float i: faceRightUp) {
+    for (float i: all_sides.frontRightUp) {
         edges.push_back(i);
     }
-    //bottom
-    for (float i: faceLeftBottom) {
+    // Bottom Side
+    for (float i: all_sides.frontLeftBottom) {
         edges.push_back(i);
     }
-    for (float i: faceRightBottom) {
+    for (float i: all_sides.frontRightBottom) {
         edges.push_back(i);
     }
-    for (float i: backRightBottom) {
+    for (float i: all_sides.backRightBottom) {
         edges.push_back(i);
     }
-    for (float i: faceLeftBottom) {
+    for (float i: all_sides.frontLeftBottom) {
         edges.push_back(i);
     }
-    for (float i: backLeftBottom) {
+    for (float i: all_sides.backLeftBottom) {
         edges.push_back(i);
     }
-    for (float i: backRightBottom) {
+    for (float i: all_sides.backRightBottom) {
         edges.push_back(i);
     }
-    //up
-    for (float i: faceLeftUp) {
+    // Up Side
+    for (float i: all_sides.frontLeftUp) {
         edges.push_back(i);
     }
-    for (float i: faceRightUp) {
+    for (float i: all_sides.frontRightUp) {
         edges.push_back(i);
     }
-    for (float i: backLeftUp) {
+    for (float i: all_sides.backLeftUp) {
         edges.push_back(i);
     }
-    for (float i: backRightUp) {
+    for (float i: all_sides.backRightUp) {
         edges.push_back(i);
     }
-    for (float i: faceRightUp) {
+    for (float i: all_sides.frontRightUp) {
         edges.push_back(i);
     }
-    for (float i: backLeftUp) {
+    for (float i: all_sides.backLeftUp) {
         edges.push_back(i);
     }
 
@@ -133,7 +133,7 @@ void Squares::Draw(std::vector<Colors *> shaders, glm::mat4 MVP) {
     glBufferData(GL_ARRAY_BUFFER, sizeof(g_vertex_buffer_data), g_vertex_buffer_data,GL_STATIC_DRAW);
     glEnableVertexAttribArray(0);
     glBindBuffer(GL_ARRAY_BUFFER, vertexbuffer);
-    glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 0, (void *) 0);
+    glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 0, (void *) nullptr);
     for (int i = 0; i < 6; i++) {
         GLuint MatrixID = glGetUniformLocation(shaders[sides_colors[i]]->id, "MVP");
         glUniformMatrix4fv(MatrixID, 1, GL_FALSE, &MVP[0][0]);
@@ -146,37 +146,40 @@ void Squares::Draw(std::vector<Colors *> shaders, glm::mat4 MVP) {
 
 void Squares::Init(float size) {
     const float a = 0.16f;
-    faceLeftBottom[0] = GetX() - (a * size);
-    faceLeftBottom[1] = GetY() - (a * size);
-    faceLeftBottom[2] = GetZ() - (a * size);
 
-    faceRightBottom[0] = GetX() + (a * size);
-    faceRightBottom[1] = GetY() - (a * size);
-    faceRightBottom[2] = GetZ() - (a * size);
+    CordsSquares new_cords = GetCords();
+    
+    all_sides.frontLeftBottom[0] = new_cords.x - (a * size);
+    all_sides.frontLeftBottom[1] = new_cords.y - (a * size);
+    all_sides.frontLeftBottom[2] = new_cords.z - (a * size);
 
-    faceRightUp[0] = GetX() + (a * size);
-    faceRightUp[1] = GetY() + (a * size);
-    faceRightUp[2] = GetZ() - (a * size);
+    all_sides.frontRightBottom[0] = new_cords.x + (a * size);
+    all_sides.frontRightBottom[1] = new_cords.y - (a * size);
+    all_sides.frontRightBottom[2] = new_cords.z - (a * size);
 
-    faceLeftUp[0] = GetX() - (a * size);
-    faceLeftUp[1] = GetY() + (a * size);
-    faceLeftUp[2] = GetZ() - (a * size);
+    all_sides.frontRightUp[0] = new_cords.x + (a * size);
+    all_sides.frontRightUp[1] = new_cords.y + (a * size);
+    all_sides.frontRightUp[2] = new_cords.z - (a * size);
 
-    backLeftBottom[0] = GetX() - (a * size);
-    backLeftBottom[1] = GetY() - (a * size);
-    backLeftBottom[2] = GetZ() + (a * size);
+    all_sides.frontLeftUp[0] = new_cords.x - (a * size);
+    all_sides.frontLeftUp[1] = new_cords.y + (a * size);
+    all_sides.frontLeftUp[2] = new_cords.z - (a * size);
 
-    backRightBottom[0] = GetX() + (a * size);
-    backRightBottom[1] = GetY() - (a * size);
-    backRightBottom[2] = GetZ() + (a * size);
+    all_sides.backLeftBottom[0] = new_cords.x - (a * size);
+    all_sides.backLeftBottom[1] = new_cords.y - (a * size);
+    all_sides.backLeftBottom[2] = new_cords.z + (a * size);
 
-    backLeftUp[0] = GetX() - (a * size);
-    backLeftUp[1] = GetY() + (a * size);
-    backLeftUp[2] = GetZ() + (a * size);
+    all_sides.backRightBottom[0] = new_cords.x + (a * size);
+    all_sides.backRightBottom[1] = new_cords.y - (a * size);
+    all_sides.backRightBottom[2] = new_cords.z + (a * size);
 
-    backRightUp[0] = GetX() + (a * size);
-    backRightUp[1] = GetY() + (a * size);
-    backRightUp[2] = GetZ() + (a * size);
+    all_sides.backLeftUp[0] = new_cords.x - (a * size);
+    all_sides.backLeftUp[1] = new_cords.y + (a * size);
+    all_sides.backLeftUp[2] = new_cords.z + (a * size);
+
+    all_sides.backRightUp[0] = new_cords.x + (a * size);
+    all_sides.backRightUp[1] = new_cords.y + (a * size);
+    all_sides.backRightUp[2] = new_cords.z + (a * size);
 
 }
 
@@ -241,34 +244,15 @@ void Squares::turndown() {
     }
 }
 
-float Squares::GetX() const {
-    return X;
+void Squares::FindSide(int index, char color) {
+    sides_colors[index] = color;
 }
 
-float Squares::GetY() const {
-    return Y;
+CordsSquares Squares::GetCords() const {
+    return cords;
 }
 
-float Squares::GetZ() const {
-    return Z;
+void Squares::ChangeCords(float x, float y, float z) {
+    cords = {x, y, z};
 }
 
-void Squares::SetX(float x) {
-    X = x;
-}
-
-void Squares::SetY(float y) {
-    Y = y;
-}
-
-void Squares::SetZ(float z) {
-    Z = z;
-}
-
-char Squares::Side(int id) {
-    return sides_colors[id];
-}
-
-void Squares::FindSide(int index, int id) {
-    sides_colors[index] = id;
-}

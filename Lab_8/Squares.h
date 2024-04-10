@@ -9,40 +9,45 @@
 #ifndef LRCUBE_SMALLCUBE_H
 #define LRCUBE_SMALLCUBE_H
 
-class Squares {
-private:
-    float X;
-    float Y;
-    float Z;
-    float faceLeftBottom[3];
-    float faceRightBottom[3];
-    float faceLeftUp[3];
-    float faceRightUp[3];
+struct CordsSquares {
+    float x,y,z;
+};
+
+struct Sides {
+    float frontLeftBottom[3];
+    float frontRightBottom[3];
+    float frontLeftUp[3];
+    float frontRightUp[3];
     float backLeftBottom[3];
     float backRightBottom[3];
     float backLeftUp[3];
     float backRightUp[3];
+};
+
+class Squares {
+private:
+    
+    CordsSquares cords{};
+    Sides all_sides{};
 
 public:
 
     char sides_colors[6] = {0,1,2,3,4,5};
     //front left back right bottom up
     // orange blue red green white yellow
+
     void Draw(std::vector<Colors*> shaders, glm::mat4 MVP);
     void Init(float size);
-    float GetX() const;
-    float GetY() const;
-    float GetZ() const;
-    void SetX(float x);
-    void SetY(float y);
-    void SetZ(float z);
-    void FindSide(int index, int id);
-    char Side(int ind);
 
-    void turnleft(); // 0->1 1->2 2->3 3->0
-    void turnright(); // 0->3 1->0 2->1 3->2
-    void turnup(); // 0->5 5->2 2->4 4->0
-    void turndown(); // 0->4 4->2 2->5 5->0
+    [[nodiscard]] CordsSquares GetCords() const;
+    void ChangeCords(float x, float y, float z);
+
+    void FindSide(int index, char color);
+
+    void turnleft();
+    void turnright();
+    void turnup();
+    void turndown();
 };
 
 #endif
