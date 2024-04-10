@@ -40,9 +40,9 @@ public:
     Squares squares[3][3][3];
     std::vector<std::pair<char,char>> stackSolve;
 
-    void turnHorizontal(int hor, int mode);
-    void turnVertical(int ver, int mode);
-    void turnAround(int side, int mode);
+    void turnHorizontal(int hor, int mode, bool flag);
+    void turnVertical(int ver, int mode, bool flag);
+    void turnAround(int side, int mode, bool flag);
     void shuffle();
     bool is_correct();
     void solve();

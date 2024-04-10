@@ -3,6 +3,7 @@
 
 void MainCube::shuffle() {
     int countOperations = 5;
+
     FILE* save = fopen("../OutputAndInput/input.txt", "w");
     char way, id, orientation;
     for (int i = 0; i < countOperations; i++) {
@@ -10,21 +11,15 @@ void MainCube::shuffle() {
         id = rand()%3;
         if (way == 0) {
             orientation = rand() % 2 + 2;
-            turnHorizontal(id, orientation);
-            if (orientation == left) stackSolve.emplace_back(id, right);
-            if (orientation == right) stackSolve.emplace_back(id, left);
+            turnHorizontal(id, orientation, true);
         }
         else if (way == 1){
             orientation = rand() % 2;
-            turnVertical(id, orientation);
-            if (orientation == down) stackSolve.emplace_back(id, up);
-            if (orientation == up) stackSolve.emplace_back(id, down);
+            turnVertical(id, orientation, true);
         }
         else {
             orientation = rand() % 2 + 4;
-            turnAround(id, orientation);
-            if (orientation == round_left) stackSolve.emplace_back(id, round_right);
-            if (orientation == round_right) stackSolve.emplace_back(id, round_left);
+            turnAround(id, orientation, true);
         }
         glLoadIdentity();
         glFinish();
@@ -61,12 +56,13 @@ void MainCube::Init() {
     }
 }
 
-void MainCube::turnVertical(int ver, int orientation) {
-
-    if (orientation == down) {
-        stackSolve.emplace_back(ver, up);
-    } else {
-        stackSolve.emplace_back(ver, down);
+void MainCube::turnVertical(int ver, int orientation, bool flag) {
+    if (flag) {
+        if (orientation == down) {
+            stackSolve.emplace_back(ver, up);
+        } else {
+            stackSolve.emplace_back(ver, down);
+        }
     }
 
     for (int y = 0; y < 3; y++) {
@@ -115,12 +111,13 @@ void MainCube::turnVertical(int ver, int orientation) {
     }
 }
 
-void MainCube::turnHorizontal(int indHor, int orientation) {
-
-    if (orientation == left) {
-        stackSolve.emplace_back(indHor, right);
-    } else {
-        stackSolve.emplace_back(indHor, left);
+void MainCube::turnHorizontal(int indHor, int orientation, bool flag) {
+    if (flag) {
+        if (orientation == left) {
+            stackSolve.emplace_back(indHor, right);
+        } else {
+            stackSolve.emplace_back(indHor, left);
+        }
     }
 
     for (int vert = 0; vert < 3; vert++) {
@@ -166,12 +163,14 @@ void MainCube::turnHorizontal(int indHor, int orientation) {
     }
 }
 
-void MainCube::turnAround(int edge, int orientation) {
+void MainCube::turnAround(int edge, int orientation, bool flag) {
 
-    if (orientation == round_right) {
-        stackSolve.emplace_back(edge, round_left);
-    } else {
-        stackSolve.emplace_back(edge, round_right);
+    if (flag) {
+        if (orientation == round_right) {
+            stackSolve.emplace_back(edge, round_left);
+        } else {
+            stackSolve.emplace_back(edge, round_right);
+        }
     }
 
     for (int vert = 0; vert < 3; vert++) {
@@ -221,24 +220,18 @@ void MainCube::turnAround(int edge, int orientation) {
 
 void MainCube::solve() { // не работает время
 
-    for (int i = stackSolve.size() - 1; i >= 0; i--) {
-        auto [index, operation] = stackSolve[i];
-
-//        double startTime = glfwGetTime();
+        auto [index, operation] = stackSolve.back();
+        stackSolve.pop_back();
+        double startTime = glfwGetTime();
 
         if (operation == up || operation == down) {
-            turnVertical(index, operation);
-//            while (glfwGetTime() - startTime < 0.5) {}
+            turnVertical(index, operation, false);
+            while (glfwGetTime() - startTime < 0.5) {}
+        } else if (operation == left || operation == right) {
+            turnHorizontal(index, operation, false);
+            while (glfwGetTime() - startTime < 0.5) {}
+        } else if (operation == round_left || operation == round_right) {
+            turnAround(index, operation, false);
+            while (glfwGetTime() - startTime < 0.5) {}
         }
-        else if (operation == left || operation == right) {
-            turnHorizontal(index, operation);
-//            while (glfwGetTime() - startTime < 0.5) {}
-        }
-        else if (operation == round_left || operation == round_right) {
-            turnAround(index, operation);
-//            while (glfwGetTime() - startTime < 0.5) {}
-        }
-    }
-    std::vector<std::pair<char, char>> new_stack;
-    stackSolve = new_stack;
 }
