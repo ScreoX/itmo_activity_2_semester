@@ -35,18 +35,33 @@ private:
     CordsSquares cords = {0,0,0};
     float size = 1.0f;
 public:
+
     Squares squares[3][3][3];
     std::vector<std::pair<char,char>> stackSolve;
+    std::vector<std::pair<char,char>> operations;
 
-    void turnHorizontal(int hor, int mode, bool flag);
-    void turnVertical(int ver, int mode, bool flag);
-    void turnAround(int side, int mode, bool flag);
+    // флаг трех типов
+    // -1 - не считать в стек
+    // 1 - считать в стек
+    // 2 - записывать операции для сборки по алгоритму
+
+    void turnVertical(int ver, int mode, int flag);
+    void turnHorizontal(int hor, int mode, int flag);
+    void turnAround(int side, int mode, int flag);
+
     void shuffle();
+    void solve_with_stack();
+
     bool is_correct();
-    void solve();
 
     void Draw(std::vector<Colors*> shaders, glm::mat4 MVP);
     void Init();
+
+    void solve_with_algorithms();
+    void show_operations_of_solving();
+    void white_cross();
+    void set_up_centers();
+    static char find_center(int ver, int side);
 };
 
 #endif

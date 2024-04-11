@@ -24,6 +24,15 @@ struct Sides {
     float backRightUp[3];
 };
 
+enum ColorsCubes {
+    orange = 0,
+    blue,
+    red,
+    green,
+    white,
+    yellow,
+};
+
 class Squares {
 private:
     
@@ -33,6 +42,7 @@ private:
 public:
 
     char sides_colors[6] = {0,1,2,3,4,5};
+
     //front left back right bottom up
     // orange blue red green white yellow
 

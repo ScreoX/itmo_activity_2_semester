@@ -47,7 +47,6 @@ void CubeDlg::drawCube(Cords cords) {
     glClearColor(0.2f, 0.2f, 0.2f, 1.0f); // задний фон
     glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
-
     glm::mat4 Projection = glm::perspective(glm::radians(GLfloat(90)), 1.0f, 0.1f, 100.0f);
     glm::mat4 Camera = glm::lookAt( glm::vec3(cords.x, cords.y, cords.z), glm::vec3(0, 0, 0), glm::vec3(0, 1, 0)); // изначальное расположение камеры кубика
     auto Model = glm::mat4(1.0f);
@@ -65,13 +64,15 @@ void CubeDlg::changePositions(CubeDlg& mainScreen) {
         // Change Positions
         if (glfwGetKey(mainScreen.screen, GLFW_KEY_ENTER) == GLFW_PRESS) {
             if (!wasReleased) {
-                switch(iteration) {
+                switch (iteration) {
                     case 0: cords.x = 1, cords.y = 1, cords.z = 1; break;
                     case 1: cords.x = 1, cords.y = 1, cords.z = -1; break;
                     case 2: cords.x = -1, cords.y = 1, cords.z = -1; break;
                     case 3: cords.x = -1, cords.y = 1, cords.z = 1; break;
+                    case 4: cords.x = 1, cords.y = -1, cords.z = 1; break;
+                    case 5: cords.x = -1, cords.y = -1, cords.z = -1; break;
                 }
-                iteration = (iteration + 1) % 4;
+                iteration = (iteration + 1) % 6;
                 wasReleased = true;
             }
         } else {
@@ -85,32 +86,32 @@ void CubeDlg::changePositions(CubeDlg& mainScreen) {
         // Vertical
         if (glfwGetKey(mainScreen.screen, GLFW_KEY_A)) {
             if (!glfwGetKey(mainScreen.screen, GLFW_KEY_A)) {
-                mainScreen.MyCube.turnVertical(leftVert,down, true); // correct
+                mainScreen.MyCube.turnVertical(leftVert,down, 1);
             }
         }
         if (glfwGetKey(mainScreen.screen, GLFW_KEY_S)) {
             if (!glfwGetKey(mainScreen.screen, GLFW_KEY_S)) {
-                mainScreen.MyCube.turnVertical(centralVert,down, true);
+                mainScreen.MyCube.turnVertical(centralVert,down, 1);
             }
         }
         if (glfwGetKey(mainScreen.screen, GLFW_KEY_D)) {
             if (!glfwGetKey(mainScreen.screen, GLFW_KEY_D)) {
-                mainScreen.MyCube.turnVertical(rightVert,down, true);
+                mainScreen.MyCube.turnVertical(rightVert,down, 1);
             }
         }
         if (glfwGetKey(mainScreen.screen, GLFW_KEY_Q)) {
             if (!glfwGetKey(mainScreen.screen, GLFW_KEY_Q)) {
-                mainScreen.MyCube.turnVertical(leftVert,up, true);
+                mainScreen.MyCube.turnVertical(leftVert,up, 1);
             }
         }
         if (glfwGetKey(mainScreen.screen, GLFW_KEY_W)) {
             if (!glfwGetKey(mainScreen.screen, GLFW_KEY_W)) {
-                mainScreen.MyCube.turnVertical(centralVert,up, true);
+                mainScreen.MyCube.turnVertical(centralVert,up, 1);
             }
         }
         if (glfwGetKey(mainScreen.screen, GLFW_KEY_E)) {
             if (!glfwGetKey(mainScreen.screen, GLFW_KEY_E)) {
-                mainScreen.MyCube.turnVertical(rightVert,up, true);
+                mainScreen.MyCube.turnVertical(rightVert,up, 1);
             }
         }
 
@@ -118,32 +119,32 @@ void CubeDlg::changePositions(CubeDlg& mainScreen) {
         // Horizontal
         if (glfwGetKey(mainScreen.screen, GLFW_KEY_R)) {
             if (!glfwGetKey(mainScreen.screen, GLFW_KEY_R)) {
-                mainScreen.MyCube.turnHorizontal(lowHor,left, true); // ошибка тут
+                mainScreen.MyCube.turnHorizontal(lowHor,left, 1);
             }
         }
         if (glfwGetKey(mainScreen.screen, GLFW_KEY_T)) {
             if (!glfwGetKey(mainScreen.screen, GLFW_KEY_T)) {
-                mainScreen.MyCube.turnHorizontal(middleHor, left, true);
+                mainScreen.MyCube.turnHorizontal(middleHor, left, 1);
             }
         }
         if (glfwGetKey(mainScreen.screen, GLFW_KEY_Y)) {
             if (!glfwGetKey(mainScreen.screen, GLFW_KEY_Y)) {
-                mainScreen.MyCube.turnHorizontal(upHor, left, true); // ошибка тут
+                mainScreen.MyCube.turnHorizontal(upHor, left, 1);
             }
         }
         if (glfwGetKey(mainScreen.screen, GLFW_KEY_F)) {
             if (!glfwGetKey(mainScreen.screen, GLFW_KEY_F))  {
-                mainScreen.MyCube.turnHorizontal(lowHor,right, true);
+                mainScreen.MyCube.turnHorizontal(lowHor,right, 1);
             }
         }
         if (glfwGetKey(mainScreen.screen, GLFW_KEY_G)) {
             if (!glfwGetKey(mainScreen.screen, GLFW_KEY_G)) {
-                mainScreen.MyCube.turnHorizontal(middleHor,right, true);
+                mainScreen.MyCube.turnHorizontal(middleHor,right, 1);
             }
         }
         if (glfwGetKey(mainScreen.screen, GLFW_KEY_H)) {
             if (!glfwGetKey(mainScreen.screen, GLFW_KEY_H)) {
-                mainScreen.MyCube.turnHorizontal(upHor,right, true);
+                mainScreen.MyCube.turnHorizontal(upHor,right, 1);
             }
         }
 
@@ -151,32 +152,32 @@ void CubeDlg::changePositions(CubeDlg& mainScreen) {
         
         if (glfwGetKey(mainScreen.screen, GLFW_KEY_U)) {
             if (!glfwGetKey(mainScreen.screen, GLFW_KEY_U)) {
-                mainScreen.MyCube.turnAround(farAround,round_left, true);
+                mainScreen.MyCube.turnAround(farAround,round_left, 1);
             }
         }
         if (glfwGetKey(mainScreen.screen, GLFW_KEY_I)) {
             if (!glfwGetKey(mainScreen.screen, GLFW_KEY_I)) {
-                mainScreen.MyCube.turnAround(centerAround,round_left, true);
+                mainScreen.MyCube.turnAround(centerAround,round_left, 1);
             }
         }
         if (glfwGetKey(mainScreen.screen, GLFW_KEY_O)) {
             if (!glfwGetKey(mainScreen.screen, GLFW_KEY_O)) {
-                mainScreen.MyCube.turnAround(nearAround,round_left, true);
+                mainScreen.MyCube.turnAround(nearAround,round_left, 1);
             }
         }
         if (glfwGetKey(mainScreen.screen, GLFW_KEY_J)) {
             if (!glfwGetKey(mainScreen.screen, GLFW_KEY_J)) {
-                mainScreen.MyCube.turnAround(farAround,round_right, true);
+                mainScreen.MyCube.turnAround(farAround,round_right, 1);
             }
         }
         if (glfwGetKey(mainScreen.screen, GLFW_KEY_K)) {
             if (!glfwGetKey(mainScreen.screen, GLFW_KEY_K)) {
-                mainScreen.MyCube.turnAround(centerAround,round_right, true);
+                mainScreen.MyCube.turnAround(centerAround,round_right, 1);
             }
         }
         if (glfwGetKey(mainScreen.screen, GLFW_KEY_L)) {
             if (!glfwGetKey(mainScreen.screen, GLFW_KEY_L)) {
-                mainScreen.MyCube.turnAround(nearAround,round_right, true);
+                mainScreen.MyCube.turnAround(nearAround,round_right, 1);
             }
         }
 
@@ -188,13 +189,26 @@ void CubeDlg::changePositions(CubeDlg& mainScreen) {
                 mainScreen.MyCube.shuffle();
             }
         }
-        // Solve
+        // Solve with stack
         if (glfwGetKey(mainScreen.screen, GLFW_KEY_SPACE)) {
             if (!glfwGetKey(mainScreen.screen, GLFW_KEY_SPACE)) {
                 while(!mainScreen.MyCube.stackSolve.empty()) {
-                    mainScreen.MyCube.solve();
+                    mainScreen.MyCube.solve_with_stack();
                     mainScreen.drawCube(cords);
                 }
+            }
+        }
+
+        // Solve with algorithms
+        if (glfwGetKey(mainScreen.screen, GLFW_KEY_M)) { // придумать как отображать результат
+            if (!glfwGetKey(mainScreen.screen, GLFW_KEY_M)) {
+                mainScreen.MyCube.solve_with_algorithms();
+
+//                reverse(mainScreen.MyCube.operations.begin(), mainScreen.MyCube.operations.end()); // развернул, так как делал emplace_back
+//                while(!mainScreen.MyCube.operations.empty()) {
+//                    mainScreen.MyCube.show_operations_of_solving();
+//                    mainScreen.drawCube(cords);
+//                }
             }
         }
 
