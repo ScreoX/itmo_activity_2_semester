@@ -30,6 +30,14 @@ enum LevelsAround {
     nearAround,
 };
 
+struct Cords {
+    GLfloat x;
+    GLfloat y;
+    GLfloat z;
+
+    Cords(GLfloat first, GLfloat second, GLfloat third) : x(first), y(second), z(third) {}
+};
+
 class MainCube {
 private:
     CordsSquares cords = {0,0,0};
@@ -38,7 +46,9 @@ public:
 
     Squares squares[3][3][3];
     std::vector<std::pair<char,char>> stackSolve;
-    std::vector<std::pair<char,char>> operations;
+    std::vector<std::pair<char,char>> operations_show;
+    std::vector<std::pair<char,char>> operations_back;
+
 
     // флаг трех типов
     // -1 - не считать в стек
@@ -62,6 +72,8 @@ public:
     void white_cross();
     void set_up_centers();
     static char find_center(int ver, int side);
+
+    void go_back();
 };
 
 #endif

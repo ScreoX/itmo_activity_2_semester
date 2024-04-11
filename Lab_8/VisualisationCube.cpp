@@ -200,15 +200,16 @@ void CubeDlg::changePositions(CubeDlg& mainScreen) {
         }
 
         // Solve with algorithms
-        if (glfwGetKey(mainScreen.screen, GLFW_KEY_M)) { // придумать как отображать результат
+        if (glfwGetKey(mainScreen.screen, GLFW_KEY_M)) { // вроде работает
             if (!glfwGetKey(mainScreen.screen, GLFW_KEY_M)) {
+
                 mainScreen.MyCube.solve_with_algorithms();
 
-//                reverse(mainScreen.MyCube.operations.begin(), mainScreen.MyCube.operations.end()); // развернул, так как делал emplace_back
-//                while(!mainScreen.MyCube.operations.empty()) {
-//                    mainScreen.MyCube.show_operations_of_solving();
-//                    mainScreen.drawCube(cords);
-//                }
+                reverse(mainScreen.MyCube.operations_show.begin(), mainScreen.MyCube.operations_show.end()); // развернул, так как делал emplace_back
+                while(!mainScreen.MyCube.operations_show.empty()) {
+                    mainScreen.MyCube.show_operations_of_solving();
+                    mainScreen.drawCube(cords);
+                }
             }
         }
 

@@ -3,13 +3,7 @@
 #ifndef LRCUBE_CUBEDLG_H
 #define LRCUBE_CUBEDLG_H
 
-struct Cords {
-    GLfloat x;
-    GLfloat y;
-    GLfloat z;
 
-    Cords(GLfloat first, GLfloat second, GLfloat third) : x(first), y(second), z(third) {}
-};
 
 class CubeDlg {
 private:

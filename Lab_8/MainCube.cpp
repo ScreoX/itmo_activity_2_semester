@@ -35,9 +35,12 @@ void MainCube::turnVertical(int ver, int orientation, int flag) {
             stackSolve.emplace_back(ver, down);
         }
     } else if (flag == 2) {
-        operations.emplace_back(ver, orientation);
-//        double startTime = glfwGetTime();
-//        while (glfwGetTime() - startTime < 0.5) {}
+        operations_show.emplace_back(ver, orientation);
+        if (orientation == down) {
+            operations_back.emplace_back(ver, up);
+        } else {
+            operations_back.emplace_back(ver, down);
+        }
     }
 
     for (int y = 0; y < 3; y++) {
@@ -95,9 +98,12 @@ void MainCube::turnHorizontal(int indHor, int orientation, int flag) {
             stackSolve.emplace_back(indHor, left);
         }
     } else if (flag == 2) {
-        operations.emplace_back(indHor, orientation);
-//        double startTime = glfwGetTime();
-//        while (glfwGetTime() - startTime < 0.5) {}
+        operations_show.emplace_back(indHor, orientation);
+        if (orientation == left) {
+            operations_back.emplace_back(indHor, right);
+        } else {
+            operations_back.emplace_back(indHor, left);
+        }
     }
 
     for (int vert = 0; vert < 3; vert++) {
@@ -153,9 +159,12 @@ void MainCube::turnAround(int edge, int orientation, int flag) {
             stackSolve.emplace_back(edge, round_right);
         }
     } else if (flag == 2) {
-        operations.emplace_back(edge, orientation);
-//        double startTime = glfwGetTime();
-//        while (glfwGetTime() - startTime < 0.5) {}
+        operations_show.emplace_back(edge, orientation);
+        if (orientation == round_right) {
+            operations_back.emplace_back(edge, round_left);
+        } else {
+            operations_back.emplace_back(edge, round_right);
+        }
     }
 
     for (int vert = 0; vert < 3; vert++) {
@@ -254,13 +263,16 @@ void MainCube::solve_with_stack() {
 
 void MainCube::solve_with_algorithms() {
     set_up_centers();
+
 //    white_cross();
+
+    go_back();
 }
 
 void MainCube::show_operations_of_solving() {
 
-    auto [index, operation] = operations.back();
-    operations.pop_back();
+    auto [index, operation] = operations_show.back();
+    operations_show.pop_back();
     double startTime = glfwGetTime();
 
     if (operation == up || operation == down) {
@@ -442,4 +454,22 @@ void MainCube::set_up_centers() {
             turnAround(centerAround, round_right, 2);
         }
     }
+}
+
+void MainCube::go_back() {
+
+    std::reverse(operations_back.begin(), operations_back.end());
+
+    for (auto [index, operation] : operations_back) {
+
+        if (operation == up || operation == down) {
+            turnVertical(index, operation, -1);
+        } else if (operation == left || operation == right) {
+            turnHorizontal(index, operation, -1);
+        } else if (operation == round_left || operation == round_right) {
+            turnAround(index, operation, -1);
+        }
+    }
+
+    operations_back.clear();
 }
