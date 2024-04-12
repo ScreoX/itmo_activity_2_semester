@@ -57,7 +57,9 @@ public:
     std::vector<std::pair<char,char>> stackSolve;
     std::vector<std::pair<char,char>> operations_show;
     std::vector<std::pair<char,char>> operations_back;
-    bool check_white_cross[4];
+
+    bool check_white_cross[4] = {false, false, false, false};
+    bool check_white_corners[4] = {false, false, false, false}; // 0 - зеленый красный, 1 - зеленый оранжевый, 2 - синий красный, 3 - синий оранжевый
 
     // флаг трех типов
     // -1 - не считать в стек
@@ -68,23 +70,34 @@ public:
     void turnHorizontal(int hor, int mode, int flag);
     void turnAround(int side, int mode, int flag);
 
+    void pifpaf_red_yellow_green();
+    void pifpaf_red_white_green();
+    void pifpaf_red_yellow_blue();
+    void pifpaf_red_white_blue();
+    void pifpaf_orange_yellow_green();
+    void pifpaf_orange_white_green();
+    void pifpaf_orange_yellow_blue();
+    void pifpaf_orange_white_blue();
+
+
     void shuffle();
     void solve_with_stack();
-
-    bool is_correct();
 
     void Draw(std::vector<Colors*> shaders, glm::mat4 MVP);
     void Init();
 
     void solve_with_algorithms();
-    void show_operations_of_solving();
+
     void white_cross();
     void set_up_centers();
+    void check_centers(int round);
     static char find_center(int ver, int side);
     bool checkWhiteCross();
     void complete_colors();
 
-    void go_back();
+    void white_corners();
+    bool check_corners();
+    void put_white_corners();
 };
 
 #endif
