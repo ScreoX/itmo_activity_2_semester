@@ -41,14 +41,23 @@ struct Cords {
 class MainCube {
 private:
     CordsSquares cords = {0,0,0};
+    Cords cordsVisual = Cords(1, 1, 1);
     float size = 1.0f;
 public:
+
+    GLFWwindow* screen;
+    std::vector<Colors*> colors;
+    int init();
+    void load();
+    void save();
+    void drawCube(Cords cords);
+    static void changePositions(MainCube &mainScreen);
 
     Squares squares[3][3][3];
     std::vector<std::pair<char,char>> stackSolve;
     std::vector<std::pair<char,char>> operations_show;
     std::vector<std::pair<char,char>> operations_back;
-
+    bool check_white_cross[4];
 
     // флаг трех типов
     // -1 - не считать в стек
@@ -72,6 +81,8 @@ public:
     void white_cross();
     void set_up_centers();
     static char find_center(int ver, int side);
+    bool checkWhiteCross();
+    void complete_colors();
 
     void go_back();
 };

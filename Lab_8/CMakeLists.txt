@@ -7,10 +7,10 @@ add_subdirectory(lib)
 add_executable(${PROJECT_NAME} main.cpp
         MainCube.h
         Squares.h
-        VisualisationCube.h
+#        VisualisationCube.h
         MainCube.cpp
         Squares.cpp
-        VisualisationCube.cpp
+#        VisualisationCube.cpp
         Colors.h
         Colors.cpp
 )
