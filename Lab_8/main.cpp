@@ -1,4 +1,3 @@
-#include "VisualisationCube.h"
 #include "MainCube.h"
 
 int main() {

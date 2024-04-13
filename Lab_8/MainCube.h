@@ -58,7 +58,7 @@ public:
 
     bool check_white_cross[4] = {false, false, false, false};
     bool check_white_corners[4] = {false, false, false, false}; // 0 - зеленый красный, 1 - зеленый оранжевый, 2 - синий красный, 3 - синий оранжевый
-
+    int iteration = 0;
     // флаг трех типов
     // -1 - не считать в стек
     // 1 - считать в стек

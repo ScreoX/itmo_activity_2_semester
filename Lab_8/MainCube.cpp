@@ -448,45 +448,32 @@ void MainCube::turnAround(int edge, int orientation, int flag) {
 void MainCube::shuffle() {
     int countOperations = 12;
 
-    FILE* save = fopen("../OutputAndInput/input.txt", "w");
+    FILE *save = fopen("../OutputAndInput/input.txt", "w");
     char way, id, orientation;
-//    for (int i = 0; i < countOperations; i++) {
-//        way = rand()%3;
-//        id = rand()%3;
-        turnHorizontal(upHor, right, 3);
-        turnVertical(rightVert, down, 3);
-        turnHorizontal(upHor, left, 3);
-        turnVertical(rightVert, up, 3);
-        turnVertical(leftVert, down, 3);
-        turnAround(farAround, round_left, 3);
-        turnHorizontal(upHor, left, 3);
-        turnVertical(rightVert, up, 3);
-        turnAround(nearAround, round_right, 3);
-        turnHorizontal(lowHor, right, 3);
-        turnAround(nearAround, round_left, 3);
-        turnAround(farAround, round_right, 3);
-//        if (way == 0) {
-//            orientation = rand() % 2 + 2;
-//            turnHorizontal(id, orientation, 3);
-//            drawCube(cordsVisual);
-//        }
-//        else if (way == 1){
-//            orientation = rand() % 2;
-//            turnVertical(id, orientation, 3);
-//            drawCube(cordsVisual);
-//        }
-//        else {
-//            orientation = rand() % 2 + 4;
-//            turnAround(id, orientation, 3);
-//            drawCube(cordsVisual);
-//        }
-//        glLoadIdentity();
-//        glFinish();
-//        std::putc(way+97,save);
-//        std::putc(id+97,save);
-//        std::putc(orientation+98,save);
+    for (int i = 0; i < countOperations; i++) {
+        way = rand() % 3;
+        id = rand() % 3;
+        if (way == 0) {
+            orientation = rand() % 2 + 2;
+            turnHorizontal(id, orientation, 3);
+            drawCube(cordsVisual);
+        } else if (way == 1) {
+            orientation = rand() % 2;
+            turnVertical(id, orientation, 3);
+            drawCube(cordsVisual);
+        } else {
+            orientation = rand() % 2 + 4;
+            turnAround(id, orientation, 3);
+            drawCube(cordsVisual);
+        }
+        glLoadIdentity();
+        glFinish();
+        std::putc(way + 97, save);
+        std::putc(id + 97, save);
+        std::putc(orientation + 98, save);
 
-//    std::fclose(save);
+        std::fclose(save);
+    }
 }
 
 void MainCube::solve_with_stack() {
@@ -1167,16 +1154,20 @@ void MainCube::make_yellow_cross() {
         && squares[2][2][1].sides_colors[yellow] == yellow) {
         // ничего делать не надо
     } else if (squares[0][2][1].sides_colors[yellow] == yellow && squares[2][2][1].sides_colors[yellow] == yellow ||
-            squares[1][2][2].sides_colors[yellow] == yellow && squares[1][2][0].sides_colors[yellow] == yellow) { // проверяем линию
+               squares[1][2][2].sides_colors[yellow] == yellow && squares[1][2][0].sides_colors[yellow] == yellow) { // проверяем линию
         if (squares[1][2][2].sides_colors[yellow] == yellow && squares[1][2][0].sides_colors[yellow] == yellow) {
             turnHorizontal(upHor, left, 2);
         }
 
         change_positions_of_up_layer_for_yellow_centers();
 
-    } else if (squares[0][2][1].sides_colors[yellow] != yellow && squares[1][2][0].sides_colors[yellow] != yellow
-               && squares[2][2][1].sides_colors[yellow] != yellow) {
-        make_yellow_cross();
+    } else if (squares[0][2][1].sides_colors[yellow] != yellow && squares[1][2][0].sides_colors[yellow] != yellow && squares[2][2][1].sides_colors[yellow] != yellow) {
+        change_positions_of_up_layer_for_yellow_centers();
+        while (!(squares[0][2][1].sides_colors[yellow] == yellow && squares[1][2][0].sides_colors[yellow] == yellow)) {
+            turnHorizontal(upHor, left, 2);
+        }
+        change_positions_of_up_layer_for_yellow_centers();
+        change_positions_of_up_layer_for_yellow_centers();
     } else { // птичка
         while (!(squares[0][2][1].sides_colors[yellow] == yellow && squares[1][2][0].sides_colors[yellow] == yellow)) {
             turnHorizontal(upHor, left, 2);
@@ -1212,7 +1203,7 @@ void MainCube::top_layer_centers() {
             if (squares[0][2][1].sides_colors[blue] == blue) {
                 turn_green_side();
             } else { // green
-                turn_green_side();
+                turn_red_side();
             }
         }
     } else { // нет, это второй вариант
@@ -1227,7 +1218,7 @@ void MainCube::top_layer_centers() {
             if (squares[0][2][1].sides_colors[blue] == blue) {
                 turn_green_side();
             } else { // green
-                turn_green_side();
+                turn_red_side();
             }
         }
     }
@@ -1245,64 +1236,101 @@ void MainCube::make_right_position_for_yellow_cornerns() {
     // 2 - зеленый оранжевый
     // 3 - синий оранжевый
 
-    // Проверяем положения углов (не смотрим на их ориентацию)
-    if (squares[0][2][2].sides_colors[red] == red || squares[0][2][2].sides_colors[blue] == red || squares[0][2][2].sides_colors[yellow] == red) {
-        if (squares[0][2][2].sides_colors[red] == blue || squares[0][2][2].sides_colors[blue] == blue || squares[0][2][2].sides_colors[yellow] == blue) {
-            check_yellow_corners[0] = true;
-        }
-    }
-    if (squares[2][2][2].sides_colors[red] == red || squares[2][2][2].sides_colors[green] == red || squares[2][2][2].sides_colors[yellow] == red) {
-        if (squares[2][2][2].sides_colors[red] == green || squares[2][2][2].sides_colors[green] == green || squares[2][2][2].sides_colors[yellow] == green) {
-            check_yellow_corners[1] = true;
-        }
-    }
-    if (squares[2][2][0].sides_colors[orange] == green || squares[2][2][0].sides_colors[green] == green || squares[2][2][0].sides_colors[yellow] == green) {
-        if (squares[2][2][0].sides_colors[orange] == orange || squares[2][2][0].sides_colors[green] == orange || squares[2][2][0].sides_colors[yellow] == orange) {
-            check_yellow_corners[2] = true;
-        }
-    }
-    if (squares[0][2][0].sides_colors[orange] == orange || squares[0][2][0].sides_colors[blue] == orange || squares[0][2][0].sides_colors[yellow] == orange) {
-        if (squares[0][2][0].sides_colors[orange] == blue || squares[0][2][0].sides_colors[blue] == blue || squares[0][2][0].sides_colors[yellow] == blue) {
-            check_yellow_corners[3] = true;
-        }
-    }
-
     int right_positions = 0;
-    int save_index_if_only_one_has_right_position = 0;
-    for (int i = 0; i < 4; i++) {
-        if (check_yellow_corners[i]) {
-            ++right_positions;
-            save_index_if_only_one_has_right_position = i;
+
+    while (right_positions != 4) {
+
+        check_yellow_corners.assign(4, false);
+
+        // Проверяем положения углов (не смотрим на их ориентацию)
+        if (squares[0][2][2].sides_colors[red] == red || squares[0][2][2].sides_colors[blue] == red || squares[0][2][2].sides_colors[yellow] == red) {
+            if (squares[0][2][2].sides_colors[red] == blue || squares[0][2][2].sides_colors[blue] == blue || squares[0][2][2].sides_colors[yellow] == blue) {
+                check_yellow_corners[0] = true;
+            }
+        }
+        if (squares[2][2][2].sides_colors[red] == red || squares[2][2][2].sides_colors[green] == red || squares[2][2][2].sides_colors[yellow] == red) {
+            if (squares[2][2][2].sides_colors[red] == green || squares[2][2][2].sides_colors[green] == green || squares[2][2][2].sides_colors[yellow] == green) {
+                check_yellow_corners[1] = true;
+            }
+        }
+        if (squares[2][2][0].sides_colors[orange] == green || squares[2][2][0].sides_colors[green] == green || squares[2][2][0].sides_colors[yellow] == green) {
+            if (squares[2][2][0].sides_colors[orange] == orange || squares[2][2][0].sides_colors[green] == orange || squares[2][2][0].sides_colors[yellow] == orange) {
+                check_yellow_corners[2] = true;
+            }
+        }
+        if (squares[0][2][0].sides_colors[orange] == orange || squares[0][2][0].sides_colors[blue] == orange || squares[0][2][0].sides_colors[yellow] == orange) {
+            if (squares[0][2][0].sides_colors[orange] == blue || squares[0][2][0].sides_colors[blue] == blue || squares[0][2][0].sides_colors[yellow] == blue) {
+                check_yellow_corners[3] = true;
+            }
+        }
+
+        right_positions = 0;
+
+        int save_index_if_only_one_has_right_position = 0;
+        for (int i = 0; i < 4; i++) {
+            if (check_yellow_corners[i]) {
+                ++right_positions;
+                save_index_if_only_one_has_right_position = i;
+            }
+        }
+
+        if (right_positions == 1) {
+            if (save_index_if_only_one_has_right_position == 0) {
+                put_corners_if_red_blue();
+            } else if (save_index_if_only_one_has_right_position == 1) {
+                put_corners_if_red_green();
+            } else if (save_index_if_only_one_has_right_position == 2) {
+                put_corners_if_orange_green();
+            } else {
+                put_corners_if_orange_blue();
+            }
+            right_positions = 0;
+
+            if (squares[0][2][2].sides_colors[red] == red || squares[0][2][2].sides_colors[blue] == red || squares[0][2][2].sides_colors[yellow] == red) {
+                if (squares[0][2][2].sides_colors[red] == blue || squares[0][2][2].sides_colors[blue] == blue || squares[0][2][2].sides_colors[yellow] == blue) {
+                    check_yellow_corners[0] = true;
+                }
+            }
+            if (squares[2][2][2].sides_colors[red] == red || squares[2][2][2].sides_colors[green] == red || squares[2][2][2].sides_colors[yellow] == red) {
+                if (squares[2][2][2].sides_colors[red] == green || squares[2][2][2].sides_colors[green] == green || squares[2][2][2].sides_colors[yellow] == green) {
+                    check_yellow_corners[1] = true;
+                }
+            }
+            if (squares[2][2][0].sides_colors[orange] == green || squares[2][2][0].sides_colors[green] == green || squares[2][2][0].sides_colors[yellow] == green) {
+                if (squares[2][2][0].sides_colors[orange] == orange || squares[2][2][0].sides_colors[green] == orange || squares[2][2][0].sides_colors[yellow] == orange) {
+                    check_yellow_corners[2] = true;
+                }
+            }
+            if (squares[0][2][0].sides_colors[orange] == orange || squares[0][2][0].sides_colors[blue] == orange || squares[0][2][0].sides_colors[yellow] == orange) {
+                if (squares[0][2][0].sides_colors[orange] == blue || squares[0][2][0].sides_colors[blue] == blue || squares[0][2][0].sides_colors[yellow] == blue) {
+                    check_yellow_corners[3] = true;
+                }
+            }
+
+            for (int i = 0; i < 4; i++) {
+                if (check_yellow_corners[i]) {
+                    ++right_positions;
+                    save_index_if_only_one_has_right_position = i;
+                }
+            }
+        }
+        if (right_positions == 0) {
+            put_corners_if_orange_green();
         }
     }
 
-    if (right_positions == 1) {
-        if (save_index_if_only_one_has_right_position == 0) {
-            put_corners_if_red_blue();
-        } else if (save_index_if_only_one_has_right_position == 1) {
-            put_corners_if_red_green();
-        } else if (save_index_if_only_one_has_right_position == 2) {
-            put_corners_if_orange_green();
-        } else {
-            put_corners_if_orange_blue();
-        }
-        make_right_position_for_yellow_cornerns();
-    } else if (right_positions == 4) {
-        check_yellow_corners.assign(4, false);
-        if (squares[0][2][2].sides_colors[yellow] == yellow) {
-            check_yellow_corners[0] = true;
-        }
-        if (squares[2][2][2].sides_colors[yellow] == yellow) {
-            check_yellow_corners[1] = true;
-        }
-        if (squares[2][2][0].sides_colors[yellow] == yellow) {
-            check_yellow_corners[2] = true;
-        }
-        if (squares[0][2][0].sides_colors[yellow] == yellow) {
-            check_yellow_corners[3] = true;
-        }
-    } else {
-        make_right_position_for_yellow_cornerns();
+    check_yellow_corners.assign(4, false);
+    if (squares[0][2][2].sides_colors[yellow] == yellow) {
+        check_yellow_corners[0] = true;
+    }
+    if (squares[2][2][2].sides_colors[yellow] == yellow) {
+        check_yellow_corners[1] = true;
+    }
+    if (squares[2][2][0].sides_colors[yellow] == yellow) {
+        check_yellow_corners[2] = true;
+    }
+    if (squares[0][2][0].sides_colors[yellow] == yellow) {
+        check_yellow_corners[3] = true;
     }
 
     if (!check_yellow_corners[0]) {
@@ -1316,7 +1344,7 @@ void MainCube::make_right_position_for_yellow_cornerns() {
             pifpaf_for_set_up_yellow_cornerns();
         }
     }
-    turnHorizontal(upHor, right, 2);
+    turnHorizontal(upHor, left, 2);
 
     if (!check_yellow_corners[1]) {
         if (squares[0][2][2].sides_colors[red] == yellow) {
@@ -1329,7 +1357,7 @@ void MainCube::make_right_position_for_yellow_cornerns() {
             pifpaf_for_set_up_yellow_cornerns();
         }
     }
-    turnHorizontal(upHor, right, 2);
+    turnHorizontal(upHor, left, 2);
 
     if (!check_yellow_corners[2]) {
         if (squares[0][2][2].sides_colors[red] == yellow) {
@@ -1342,7 +1370,7 @@ void MainCube::make_right_position_for_yellow_cornerns() {
             pifpaf_for_set_up_yellow_cornerns();
         }
     }
-    turnHorizontal(upHor, right, 2);
+    turnHorizontal(upHor, left, 2);
 
     if (!check_yellow_corners[3]) {
         if (squares[0][2][2].sides_colors[red] == yellow) {
@@ -1355,7 +1383,7 @@ void MainCube::make_right_position_for_yellow_cornerns() {
             pifpaf_for_set_up_yellow_cornerns();
         }
     }
-    turnHorizontal(upHor, right, 2);
+    turnHorizontal(upHor, left, 2);
 }
 
 
@@ -1568,9 +1596,9 @@ void MainCube::comb_green_orange() {
 
 void MainCube::make_right_positions_before_last_step() {
     while (!((squares[0][2][1].sides_colors[blue] == blue && squares[1][2][2].sides_colors[red] == red) ||
-            (squares[0][2][1].sides_colors[blue] == blue && squares[1][2][0].sides_colors[orange] == orange) ||
-            (squares[1][2][2].sides_colors[red] == red && squares[2][2][1].sides_colors[green] == green) ||
-            (squares[1][2][0].sides_colors[orange] == orange && squares[2][2][1].sides_colors[green] == green))) {
+             (squares[0][2][1].sides_colors[blue] == blue && squares[1][2][0].sides_colors[orange] == orange) ||
+             (squares[1][2][2].sides_colors[red] == red && squares[2][2][1].sides_colors[green] == green) ||
+             (squares[1][2][0].sides_colors[orange] == orange && squares[2][2][1].sides_colors[green] == green))) {
         turnHorizontal(upHor, left, 2);
     }
 }
@@ -1667,10 +1695,7 @@ void MainCube::put_corners_if_red_blue() {
     turnAround(farAround, round_right, 2);
     turnVertical(rightVert, up, 2);
     turnAround(farAround, round_left, 2);
-    turnVertical(rightVert, up, 2);
+    turnVertical(leftVert, up, 2);
     turnAround(farAround, round_right, 2);
-    turnVertical(leftVert, down, 2);
+    turnVertical(rightVert, down, 2);
 }
-
-
-
