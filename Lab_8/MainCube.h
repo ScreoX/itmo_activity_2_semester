@@ -48,8 +48,6 @@ public:
     GLFWwindow* screen;
     std::vector<Colors*> colors;
     int init();
-    void load();
-    void save();
     void drawCube(Cords cords);
     static void changePositions(MainCube &mainScreen);
 
@@ -70,14 +68,12 @@ public:
     void turnHorizontal(int hor, int mode, int flag);
     void turnAround(int side, int mode, int flag);
 
-    void pifpaf_red_yellow_green();
     void pifpaf_red_white_green();
-    void pifpaf_red_yellow_blue();
     void pifpaf_red_white_blue();
-    void pifpaf_orange_yellow_green();
     void pifpaf_orange_white_green();
-    void pifpaf_orange_yellow_blue();
     void pifpaf_orange_white_blue();
+
+    void pifpaf_for_set_up_yellow_cornerns();
 
 
     void shuffle();
@@ -98,6 +94,38 @@ public:
     void white_corners();
     bool check_corners();
     void put_white_corners();
+
+    void side_mini_cubes();
+    void put_side_mini_cubes();
+
+    void comb_red_green();
+    void comb_green_red();
+    void comb_red_blue();
+    void comb_blue_red();
+    void comb_orange_blue();
+    void comb_blue_orange();
+    void comb_orange_green();
+    void comb_green_orange();
+
+    void make_yellow_cross();
+    void change_positions_of_up_layer_for_yellow_centers();
+
+    void top_layer_centers();
+    void make_right_positions_before_last_step();
+
+    void turn_red_side();
+    void turn_green_side();
+    void turn_orange_side();
+    void turn_blue_side();
+
+    void make_right_position_for_yellow_cornerns();
+
+    void put_corners_if_orange_green();
+    void put_corners_if_orange_blue();
+    void put_corners_if_red_green();
+    void put_corners_if_red_blue();
+
+
 };
 
 #endif

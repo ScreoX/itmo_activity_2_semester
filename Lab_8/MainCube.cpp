@@ -258,7 +258,7 @@ void MainCube::turnVertical(int ver, int orientation, int flag) {
     if (flag == 3) {
         while (glfwGetTime() - startTime < 0.1) {}
     } else {
-        while (glfwGetTime() - startTime < 0.2) {}
+        while (glfwGetTime() - startTime < 0.05) {}
     }
 
     if (flag == 3) {
@@ -323,7 +323,7 @@ void MainCube::turnHorizontal(int indHor, int orientation, int flag) {
     if (flag == 3) {
         while (glfwGetTime() - startTime < 0.1) {}
     } else {
-        while (glfwGetTime() - startTime < 0.2) {}
+        while (glfwGetTime() - startTime < 0.05) {}
     }
 
     if (flag == 3) {
@@ -386,7 +386,7 @@ void MainCube::turnAround(int edge, int orientation, int flag) {
     if (flag == 3) {
         while (glfwGetTime() - startTime < 0.1) {}
     } else {
-        while (glfwGetTime() - startTime < 0.2) {}
+        while (glfwGetTime() - startTime < 0.05) {}
     }
 
     if (flag == 3) {
@@ -446,36 +446,47 @@ void MainCube::turnAround(int edge, int orientation, int flag) {
 }
 
 void MainCube::shuffle() {
-    int countOperations = 15;
+    int countOperations = 12;
 
     FILE* save = fopen("../OutputAndInput/input.txt", "w");
     char way, id, orientation;
-    for (int i = 0; i < countOperations; i++) {
-        way = rand()%3;
-        id = rand()%3;
-        if (way == 0) {
-            orientation = rand() % 2 + 2;
-            turnHorizontal(id, orientation, 3);
-            drawCube(cordsVisual);
-        }
-        else if (way == 1){
-            orientation = rand() % 2;
-            turnVertical(id, orientation, 3);
-            drawCube(cordsVisual);
-        }
-        else {
-            orientation = rand() % 2 + 4;
-            turnAround(id, orientation, 3);
-            drawCube(cordsVisual);
-        }
-        glLoadIdentity();
-        glFinish();
-        std::putc(way+97,save);
-        std::putc(id+97,save);
-        std::putc(orientation+98,save);
-    }
+//    for (int i = 0; i < countOperations; i++) {
+//        way = rand()%3;
+//        id = rand()%3;
+        turnHorizontal(upHor, right, 3);
+        turnVertical(rightVert, down, 3);
+        turnHorizontal(upHor, left, 3);
+        turnVertical(rightVert, up, 3);
+        turnVertical(leftVert, down, 3);
+        turnAround(farAround, round_left, 3);
+        turnHorizontal(upHor, left, 3);
+        turnVertical(rightVert, up, 3);
+        turnAround(nearAround, round_right, 3);
+        turnHorizontal(lowHor, right, 3);
+        turnAround(nearAround, round_left, 3);
+        turnAround(farAround, round_right, 3);
+//        if (way == 0) {
+//            orientation = rand() % 2 + 2;
+//            turnHorizontal(id, orientation, 3);
+//            drawCube(cordsVisual);
+//        }
+//        else if (way == 1){
+//            orientation = rand() % 2;
+//            turnVertical(id, orientation, 3);
+//            drawCube(cordsVisual);
+//        }
+//        else {
+//            orientation = rand() % 2 + 4;
+//            turnAround(id, orientation, 3);
+//            drawCube(cordsVisual);
+//        }
+//        glLoadIdentity();
+//        glFinish();
+//        std::putc(way+97,save);
+//        std::putc(id+97,save);
+//        std::putc(orientation+98,save);
 
-    std::fclose(save);
+//    std::fclose(save);
 }
 
 void MainCube::solve_with_stack() {
@@ -571,6 +582,31 @@ void MainCube::solve_with_algorithms() {
     while (glfwGetTime() - startTime < 2) {}
 
     put_white_corners();
+
+    startTime = glfwGetTime();
+    while (glfwGetTime() - startTime < 2) {}
+
+    side_mini_cubes();
+
+    startTime = glfwGetTime();
+    while (glfwGetTime() - startTime < 2) {}
+
+    put_side_mini_cubes();
+
+    startTime = glfwGetTime();
+    while (glfwGetTime() - startTime < 2) {}
+
+    make_yellow_cross();
+
+    startTime = glfwGetTime();
+    while (glfwGetTime() - startTime < 2) {}
+
+    top_layer_centers();
+
+    startTime = glfwGetTime();
+    while (glfwGetTime() - startTime < 2) {}
+
+    make_right_position_for_yellow_cornerns();
 
 }
 
@@ -1005,16 +1041,323 @@ void MainCube::white_corners() {
     }
 }
 
-//std::tuple<char, char, char> MainCube::find_position(char c1, char c2, char c3) {
-//    if (c1 == white) {
-//        if (c2 == red)
-//    } else if (c2 == white) {
-//
-//    } else {
-//
-//    }
-//    return ;
-//}
+void MainCube::side_mini_cubes() {
+    // красный зеленый
+    for (int vert = 0; vert < 4; vert++) {
+        for (int side = 0; side < 4; side++) {
+            if (!(squares[2][1][2].sides_colors[red] == yellow || squares[2][1][2].sides_colors[green] == yellow)) {
+                if (squares[1][2][2].sides_colors[red] == yellow || squares[1][2][2].sides_colors[yellow] == yellow) {
+                    comb_red_green();
+                } else {
+                    turnHorizontal(upHor, right, 2);
+                }
+            } else {
+                break;
+            }
+        }
+    }
+
+    for (int vert = 0; vert < 4; vert++) { // красный синий
+        for (int side = 0; side < 4; side++) {
+            if (!(squares[0][1][2].sides_colors[red] == yellow || squares[0][1][2].sides_colors[blue] == yellow)) {
+                if (squares[1][2][2].sides_colors[red] == yellow || squares[1][2][2].sides_colors[yellow] == yellow) {
+                    comb_red_blue();
+                } else {
+                    turnHorizontal(upHor, right, 2);
+                }
+            } else {
+                break;
+            }
+        }
+    }
+
+    for (int vert = 0; vert < 4; vert++) { //  оранжевый синий
+        for (int side = 0; side < 4; side++) {
+            if (!(squares[0][1][0].sides_colors[orange] == yellow || squares[0][1][0].sides_colors[blue] == yellow)) {
+                if (squares[1][2][0].sides_colors[orange] == yellow || squares[1][2][0].sides_colors[yellow] == yellow) {
+                    comb_orange_blue();
+                } else {
+                    turnHorizontal(upHor, right, 2);
+                }
+            } else {
+                break;
+            }
+        }
+    }
+
+    for (int vert = 0; vert < 4; vert++) { // оранжевый зеленый
+        for (int side = 0; side < 4; side++) {
+            if (!(squares[2][1][0].sides_colors[orange] == yellow || squares[2][1][0].sides_colors[green] == yellow)) {
+                if (squares[1][2][0].sides_colors[orange] == yellow || squares[1][2][0].sides_colors[yellow] == yellow) {
+                    comb_orange_green();
+                } else {
+                    turnHorizontal(upHor, right, 2);
+                }
+            } else {
+                break;
+            }
+        }
+    }
+}
+
+void MainCube::put_side_mini_cubes() {
+    // зеленый красный
+    for (int i = 0; i < 4; i++) {
+        if (squares[1][2][2].sides_colors[red] == red && squares[1][2][2].sides_colors[yellow] == green) {
+            comb_red_green();
+            break;
+        } else if (squares[1][2][2].sides_colors[red] == green && squares[1][2][2].sides_colors[yellow] == red) {
+            turnHorizontal(upHor, right, 2);
+            comb_green_red();
+            break;
+        } else {
+            turnHorizontal(upHor, right, 2);
+        }
+    }
+
+    // красный синий
+    for (int i = 0; i < 4; i++) {
+        if (squares[1][2][2].sides_colors[red] == red && squares[1][2][2].sides_colors[yellow] == blue) {
+            comb_red_blue();
+            break;
+        } else if (squares[1][2][2].sides_colors[red] == blue && squares[1][2][2].sides_colors[yellow] == red) {
+            turnHorizontal(upHor, left, 2);
+            comb_blue_red();
+            break;
+        } else {
+            turnHorizontal(upHor, right, 2);
+        }
+    }
+
+    // оранжевый зеленый
+    for (int i = 0; i < 4; i++) {
+        if (squares[1][2][0].sides_colors[orange] == orange && squares[1][2][0].sides_colors[yellow] == green) {
+            comb_orange_green();
+            break;
+        } else if (squares[1][2][0].sides_colors[orange] == green && squares[1][2][0].sides_colors[yellow] == orange) {
+            turnHorizontal(upHor, left, 2);
+            comb_green_orange();
+            break;
+        } else {
+            turnHorizontal(upHor, right, 2);
+        }
+    }
+
+    // оранжевый синий
+    for (int i = 0; i < 4; i++) {
+        if (squares[1][2][0].sides_colors[orange] == orange && squares[1][2][0].sides_colors[yellow] == blue) {
+            comb_orange_blue();
+            break;
+        } else if (squares[1][2][0].sides_colors[orange] == blue && squares[1][2][0].sides_colors[yellow] == orange) {
+            turnHorizontal(upHor, right, 2);
+            comb_blue_orange();
+            break;
+        } else {
+            turnHorizontal(upHor, right, 2);
+        }
+    }
+}
+
+void MainCube::make_yellow_cross() {
+    // Существует три вариант: полоса, птичка, крест
+    // Проверим какой сейчас случай
+
+    // проверка на крест
+    if (squares[0][2][1].sides_colors[yellow] == yellow && squares[1][2][0].sides_colors[yellow] == yellow
+        && squares[2][2][1].sides_colors[yellow] == yellow) {
+        // ничего делать не надо
+    } else if (squares[0][2][1].sides_colors[yellow] == yellow && squares[2][2][1].sides_colors[yellow] == yellow ||
+            squares[1][2][2].sides_colors[yellow] == yellow && squares[1][2][0].sides_colors[yellow] == yellow) { // проверяем линию
+        if (squares[1][2][2].sides_colors[yellow] == yellow && squares[1][2][0].sides_colors[yellow] == yellow) {
+            turnHorizontal(upHor, left, 2);
+        }
+
+        change_positions_of_up_layer_for_yellow_centers();
+
+    } else if (squares[0][2][1].sides_colors[yellow] != yellow && squares[1][2][0].sides_colors[yellow] != yellow
+               && squares[2][2][1].sides_colors[yellow] != yellow) {
+        make_yellow_cross();
+    } else { // птичка
+        while (!(squares[0][2][1].sides_colors[yellow] == yellow && squares[1][2][0].sides_colors[yellow] == yellow)) {
+            turnHorizontal(upHor, left, 2);
+        }
+
+        change_positions_of_up_layer_for_yellow_centers();
+        change_positions_of_up_layer_for_yellow_centers();
+    }
+}
+
+void MainCube::top_layer_centers() {
+    // смотрим какой у нас вариант на 3 слое:
+    // 1) стоят два цвета напротив друг друга (зеленый - синий или красный - оранжевый)
+    // 2) стоят рядом
+
+    while (squares[0][2][1].sides_colors[blue] != blue) {
+        turnHorizontal(upHor, right, 2);
+    }
+
+    // Проверяем какой это вариант
+
+    if (squares[0][2][1].sides_colors[blue] == blue && squares[2][2][1].sides_colors[green] == green) {
+        // да, это первый вариант
+        turn_red_side();
+        make_right_positions_before_last_step();
+        if (squares[1][2][2].sides_colors[red] == red) {
+            if (squares[0][2][1].sides_colors[blue] == blue) {
+                turn_orange_side();
+            } else { // another = green
+                turn_blue_side();
+            }
+        } else { // orange
+            if (squares[0][2][1].sides_colors[blue] == blue) {
+                turn_green_side();
+            } else { // green
+                turn_green_side();
+            }
+        }
+    } else { // нет, это второй вариант
+        make_right_positions_before_last_step();
+        if (squares[1][2][2].sides_colors[red] == red) {
+            if (squares[0][2][1].sides_colors[blue] == blue) {
+                turn_orange_side();
+            } else { // another = green
+                turn_blue_side();
+            }
+        } else { // orange
+            if (squares[0][2][1].sides_colors[blue] == blue) {
+                turn_green_side();
+            } else { // green
+                turn_green_side();
+            }
+        }
+    }
+
+    while (squares[0][2][1].sides_colors[blue] != blue) {
+        turnHorizontal(upHor, right, 2);
+    }
+
+}
+
+void MainCube::make_right_position_for_yellow_cornerns() {
+    std::vector<bool> check_yellow_corners(4, false);
+    // 0 - красный синий
+    // 1 - красный зеленый
+    // 2 - зеленый оранжевый
+    // 3 - синий оранжевый
+
+    // Проверяем положения углов (не смотрим на их ориентацию)
+    if (squares[0][2][2].sides_colors[red] == red || squares[0][2][2].sides_colors[blue] == red || squares[0][2][2].sides_colors[yellow] == red) {
+        if (squares[0][2][2].sides_colors[red] == blue || squares[0][2][2].sides_colors[blue] == blue || squares[0][2][2].sides_colors[yellow] == blue) {
+            check_yellow_corners[0] = true;
+        }
+    }
+    if (squares[2][2][2].sides_colors[red] == red || squares[2][2][2].sides_colors[green] == red || squares[2][2][2].sides_colors[yellow] == red) {
+        if (squares[2][2][2].sides_colors[red] == green || squares[2][2][2].sides_colors[green] == green || squares[2][2][2].sides_colors[yellow] == green) {
+            check_yellow_corners[1] = true;
+        }
+    }
+    if (squares[2][2][0].sides_colors[orange] == green || squares[2][2][0].sides_colors[green] == green || squares[2][2][0].sides_colors[yellow] == green) {
+        if (squares[2][2][0].sides_colors[orange] == orange || squares[2][2][0].sides_colors[green] == orange || squares[2][2][0].sides_colors[yellow] == orange) {
+            check_yellow_corners[2] = true;
+        }
+    }
+    if (squares[0][2][0].sides_colors[orange] == orange || squares[0][2][0].sides_colors[blue] == orange || squares[0][2][0].sides_colors[yellow] == orange) {
+        if (squares[0][2][0].sides_colors[orange] == blue || squares[0][2][0].sides_colors[blue] == blue || squares[0][2][0].sides_colors[yellow] == blue) {
+            check_yellow_corners[3] = true;
+        }
+    }
+
+    int right_positions = 0;
+    int save_index_if_only_one_has_right_position = 0;
+    for (int i = 0; i < 4; i++) {
+        if (check_yellow_corners[i]) {
+            ++right_positions;
+            save_index_if_only_one_has_right_position = i;
+        }
+    }
+
+    if (right_positions == 1) {
+        if (save_index_if_only_one_has_right_position == 0) {
+            put_corners_if_red_blue();
+        } else if (save_index_if_only_one_has_right_position == 1) {
+            put_corners_if_red_green();
+        } else if (save_index_if_only_one_has_right_position == 2) {
+            put_corners_if_orange_green();
+        } else {
+            put_corners_if_orange_blue();
+        }
+        make_right_position_for_yellow_cornerns();
+    } else if (right_positions == 4) {
+        check_yellow_corners.assign(4, false);
+        if (squares[0][2][2].sides_colors[yellow] == yellow) {
+            check_yellow_corners[0] = true;
+        }
+        if (squares[2][2][2].sides_colors[yellow] == yellow) {
+            check_yellow_corners[1] = true;
+        }
+        if (squares[2][2][0].sides_colors[yellow] == yellow) {
+            check_yellow_corners[2] = true;
+        }
+        if (squares[0][2][0].sides_colors[yellow] == yellow) {
+            check_yellow_corners[3] = true;
+        }
+    } else {
+        make_right_position_for_yellow_cornerns();
+    }
+
+    if (!check_yellow_corners[0]) {
+        if (squares[0][2][2].sides_colors[red] == yellow) {
+            pifpaf_for_set_up_yellow_cornerns();
+            pifpaf_for_set_up_yellow_cornerns();
+            pifpaf_for_set_up_yellow_cornerns();
+            pifpaf_for_set_up_yellow_cornerns();
+        } else if (squares[0][2][2].sides_colors[blue] == yellow) {
+            pifpaf_for_set_up_yellow_cornerns();
+            pifpaf_for_set_up_yellow_cornerns();
+        }
+    }
+    turnHorizontal(upHor, right, 2);
+
+    if (!check_yellow_corners[1]) {
+        if (squares[0][2][2].sides_colors[red] == yellow) {
+            pifpaf_for_set_up_yellow_cornerns();
+            pifpaf_for_set_up_yellow_cornerns();
+            pifpaf_for_set_up_yellow_cornerns();
+            pifpaf_for_set_up_yellow_cornerns();
+        } else if (squares[0][2][2].sides_colors[blue] == yellow) {
+            pifpaf_for_set_up_yellow_cornerns();
+            pifpaf_for_set_up_yellow_cornerns();
+        }
+    }
+    turnHorizontal(upHor, right, 2);
+
+    if (!check_yellow_corners[2]) {
+        if (squares[0][2][2].sides_colors[red] == yellow) {
+            pifpaf_for_set_up_yellow_cornerns();
+            pifpaf_for_set_up_yellow_cornerns();
+            pifpaf_for_set_up_yellow_cornerns();
+            pifpaf_for_set_up_yellow_cornerns();
+        } else if (squares[0][2][2].sides_colors[blue] == yellow) {
+            pifpaf_for_set_up_yellow_cornerns();
+            pifpaf_for_set_up_yellow_cornerns();
+        }
+    }
+    turnHorizontal(upHor, right, 2);
+
+    if (!check_yellow_corners[3]) {
+        if (squares[0][2][2].sides_colors[red] == yellow) {
+            pifpaf_for_set_up_yellow_cornerns();
+            pifpaf_for_set_up_yellow_cornerns();
+            pifpaf_for_set_up_yellow_cornerns();
+            pifpaf_for_set_up_yellow_cornerns();
+        } else if (squares[0][2][2].sides_colors[blue] == yellow) {
+            pifpaf_for_set_up_yellow_cornerns();
+            pifpaf_for_set_up_yellow_cornerns();
+        }
+    }
+    turnHorizontal(upHor, right, 2);
+}
+
 
 char MainCube::find_center(int ver, int side) {
     if (ver == 0) {
@@ -1091,8 +1434,11 @@ void MainCube::complete_colors() {
     }
 }
 
-void MainCube::pifpaf_red_yellow_green() {
-
+void MainCube::pifpaf_for_set_up_yellow_cornerns() {
+    turnVertical(leftVert, down, 2);
+    turnHorizontal(lowHor, right, 2);
+    turnVertical(leftVert, up, 2);
+    turnHorizontal(lowHor, left, 2);
 }
 
 void MainCube::pifpaf_red_white_green() {
@@ -1102,10 +1448,6 @@ void MainCube::pifpaf_red_white_green() {
     turnHorizontal(upHor, right, 2);
 }
 
-void MainCube::pifpaf_red_yellow_blue() {
-
-}
-
 void MainCube::pifpaf_red_white_blue() {
     turnAround(nearAround, round_right,2);
     turnHorizontal(upHor, left, 2);
@@ -1113,19 +1455,11 @@ void MainCube::pifpaf_red_white_blue() {
     turnHorizontal(upHor, right, 2);
 }
 
-void MainCube::pifpaf_orange_yellow_green() {
-
-}
-
 void MainCube::pifpaf_orange_white_green() {
     turnAround(farAround, round_left,2);
     turnHorizontal(upHor, left, 2);
     turnAround(farAround, round_right,2);
     turnHorizontal(upHor, right, 2);
-}
-
-void MainCube::pifpaf_orange_yellow_blue() {
-
 }
 
 void MainCube::pifpaf_orange_white_blue() {
@@ -1142,6 +1476,200 @@ bool MainCube::check_corners() {
         }
     }
     return true;
+}
+
+void MainCube::comb_red_green() {
+    turnHorizontal(upHor, left, 2);
+    turnVertical(rightVert, up, 2);
+    turnHorizontal(upHor, right, 2);
+    turnVertical(rightVert, down, 2);
+    turnHorizontal(upHor, right, 2);
+    turnAround(nearAround, round_left, 2);
+    turnHorizontal(upHor, left, 2);
+    turnAround(nearAround, round_right, 2);
+}
+
+void MainCube::comb_green_red() {
+    turnHorizontal(upHor, right, 2);
+    turnAround(nearAround, round_left, 2);
+    turnHorizontal(upHor, left, 2);
+    turnAround(nearAround, round_right, 2);
+    turnHorizontal(upHor, left, 2);
+    turnVertical(rightVert, up, 2);
+    turnHorizontal(upHor, right, 2);
+    turnVertical(rightVert, down, 2);
+}
+
+void MainCube::comb_red_blue() {
+    turnHorizontal(upHor, right, 2);
+    turnVertical(leftVert, up, 2);
+    turnHorizontal(upHor, left, 2);
+    turnVertical(leftVert, down, 2);
+    turnHorizontal(upHor, left, 2);
+    turnAround(nearAround, round_right, 2);
+    turnHorizontal(upHor, right, 2);
+    turnAround(nearAround, round_left, 2);
+}
+
+void MainCube::comb_blue_red() { // change
+    turnHorizontal(upHor, left, 2);
+    turnAround(nearAround, round_right, 2);
+    turnHorizontal(upHor, right, 2);
+    turnAround(nearAround, round_left, 2);
+    turnHorizontal(upHor, right, 2);
+    turnVertical(leftVert, up, 2);
+    turnHorizontal(upHor, left, 2);
+    turnVertical(leftVert, down, 2);
+}
+
+void MainCube::comb_orange_blue() {
+    turnHorizontal(upHor, left, 2);
+    turnVertical(leftVert, down, 2);
+    turnHorizontal(upHor, right, 2);
+    turnVertical(leftVert, up, 2);
+    turnHorizontal(upHor, right, 2);
+    turnAround(farAround, round_right, 2);
+    turnHorizontal(upHor, left, 2);
+    turnAround(farAround, round_left, 2);
+}
+
+void MainCube::comb_blue_orange() { // change
+    turnHorizontal(upHor, right, 2);
+    turnAround(farAround, round_right, 2);
+    turnHorizontal(upHor, left, 2);
+    turnAround(farAround, round_left, 2);
+    turnHorizontal(upHor, left, 2);
+    turnVertical(leftVert, down, 2);
+    turnHorizontal(upHor, right, 2);
+    turnVertical(leftVert, up, 2);
+}
+
+void MainCube::comb_orange_green() {
+    turnHorizontal(upHor, right, 2);
+    turnVertical(rightVert, down, 2);
+    turnHorizontal(upHor, left, 2);
+    turnVertical(rightVert, up, 2);
+    turnHorizontal(upHor, left, 2);
+    turnAround(farAround, round_left, 2);
+    turnHorizontal(upHor, right, 2);
+    turnAround(farAround, round_right, 2);
+}
+
+void MainCube::comb_green_orange() {
+    turnHorizontal(upHor, left, 2);
+    turnAround(farAround, round_left, 2);
+    turnHorizontal(upHor, right, 2);
+    turnAround(farAround, round_right, 2);
+    turnHorizontal(upHor, right, 2);
+    turnVertical(rightVert, down, 2);
+    turnHorizontal(upHor, left, 2);
+    turnVertical(rightVert, up, 2);
+}
+
+void MainCube::make_right_positions_before_last_step() {
+    while (!((squares[0][2][1].sides_colors[blue] == blue && squares[1][2][2].sides_colors[red] == red) ||
+            (squares[0][2][1].sides_colors[blue] == blue && squares[1][2][0].sides_colors[orange] == orange) ||
+            (squares[1][2][2].sides_colors[red] == red && squares[2][2][1].sides_colors[green] == green) ||
+            (squares[1][2][0].sides_colors[orange] == orange && squares[2][2][1].sides_colors[green] == green))) {
+        turnHorizontal(upHor, left, 2);
+    }
+}
+
+
+void MainCube::turn_red_side() {
+    turnVertical(rightVert, up,2);
+    turnHorizontal(upHor, left, 2);
+    turnVertical(rightVert, down,2);
+    turnHorizontal(upHor, left, 2);
+    turnVertical(rightVert, up,2);
+    turnHorizontal(upHor, left, 2);
+    turnHorizontal(upHor, left, 2);
+    turnVertical(rightVert, down,2);
+}
+
+void MainCube::turn_green_side() {
+    turnAround(farAround, round_left,2);
+    turnHorizontal(upHor, left, 2);
+    turnAround(farAround, round_right,2);
+    turnHorizontal(upHor, left, 2);
+    turnAround(farAround, round_left,2);
+    turnHorizontal(upHor, left, 2);
+    turnHorizontal(upHor, left, 2);
+    turnAround(farAround, round_right,2);
+}
+
+void MainCube::turn_orange_side() {
+    turnVertical(leftVert, down,2);
+    turnHorizontal(upHor, left, 2);
+    turnVertical(leftVert, up,2);
+    turnHorizontal(upHor, left, 2);
+    turnVertical(leftVert, down,2);
+    turnHorizontal(upHor, left, 2);
+    turnHorizontal(upHor, left, 2);
+    turnVertical(leftVert, up,2);
+}
+
+void MainCube::turn_blue_side() {
+    turnAround(nearAround, round_right,2);
+    turnHorizontal(upHor, left, 2);
+    turnAround(nearAround, round_left,2);
+    turnHorizontal(upHor, left, 2);
+    turnAround(nearAround, round_right,2);
+    turnHorizontal(upHor, left, 2);
+    turnHorizontal(upHor, left, 2);
+    turnAround(nearAround, round_left,2);
+}
+
+void MainCube::change_positions_of_up_layer_for_yellow_centers() {
+    turnAround(nearAround, round_right, 2);
+    pifpaf_red_white_green();
+    turnAround(nearAround, round_left, 2);
+}
+
+void MainCube::put_corners_if_orange_green() {
+    turnAround(nearAround, round_right, 2);
+    turnVertical(rightVert, up, 2);
+    turnAround(nearAround, round_left, 2);
+    turnVertical(leftVert, down, 2);
+    turnAround(nearAround, round_right, 2);
+    turnVertical(rightVert, down, 2);
+    turnAround(nearAround, round_left, 2);
+    turnVertical(leftVert, up, 2);
+}
+
+void MainCube::put_corners_if_orange_blue() {
+    turnVertical(rightVert, up, 2);
+    turnAround(farAround, round_left, 2);
+    turnVertical(rightVert, down, 2);
+    turnAround(nearAround, round_right, 2);
+
+    turnVertical(rightVert, up, 2);
+    turnAround(farAround, round_right, 2);
+    turnVertical(rightVert, down, 2);
+    turnAround(nearAround, round_left, 2);
+}
+
+void MainCube::put_corners_if_red_green() {
+    turnVertical(leftVert, down, 2);
+    turnAround(nearAround, round_right, 2);
+    turnVertical(leftVert, up, 2);
+    turnAround(farAround, round_left, 2);
+
+    turnVertical(leftVert, down, 2);
+    turnAround(nearAround, round_left, 2);
+    turnVertical(leftVert, up, 2);
+    turnAround(farAround, round_right, 2);
+}
+
+void MainCube::put_corners_if_red_blue() {
+    turnAround(farAround, round_left, 2);
+    turnVertical(leftVert, down, 2);
+    turnAround(farAround, round_right, 2);
+    turnVertical(rightVert, up, 2);
+    turnAround(farAround, round_left, 2);
+    turnVertical(rightVert, up, 2);
+    turnAround(farAround, round_right, 2);
+    turnVertical(leftVert, down, 2);
 }
 
 

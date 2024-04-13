@@ -1,5 +1,45 @@
 #include "Squares.h"
 
+
+void Squares::Init(float size) {
+    const float a = 0.16f;
+
+    CordsSquares new_cords = GetCords();
+    
+    all_sides.frontLeftBottom[0] = new_cords.x - (a * size);
+    all_sides.frontLeftBottom[1] = new_cords.y - (a * size);
+    all_sides.frontLeftBottom[2] = new_cords.z - (a * size);
+
+    all_sides.frontRightBottom[0] = new_cords.x + (a * size);
+    all_sides.frontRightBottom[1] = new_cords.y - (a * size);
+    all_sides.frontRightBottom[2] = new_cords.z - (a * size);
+
+    all_sides.frontRightUp[0] = new_cords.x + (a * size);
+    all_sides.frontRightUp[1] = new_cords.y + (a * size);
+    all_sides.frontRightUp[2] = new_cords.z - (a * size);
+
+    all_sides.frontLeftUp[0] = new_cords.x - (a * size);
+    all_sides.frontLeftUp[1] = new_cords.y + (a * size);
+    all_sides.frontLeftUp[2] = new_cords.z - (a * size);
+
+    all_sides.backLeftBottom[0] = new_cords.x - (a * size);
+    all_sides.backLeftBottom[1] = new_cords.y - (a * size);
+    all_sides.backLeftBottom[2] = new_cords.z + (a * size);
+
+    all_sides.backRightBottom[0] = new_cords.x + (a * size);
+    all_sides.backRightBottom[1] = new_cords.y - (a * size);
+    all_sides.backRightBottom[2] = new_cords.z + (a * size);
+
+    all_sides.backLeftUp[0] = new_cords.x - (a * size);
+    all_sides.backLeftUp[1] = new_cords.y + (a * size);
+    all_sides.backLeftUp[2] = new_cords.z + (a * size);
+
+    all_sides.backRightUp[0] = new_cords.x + (a * size);
+    all_sides.backRightUp[1] = new_cords.y + (a * size);
+    all_sides.backRightUp[2] = new_cords.z + (a * size);
+
+}
+
 void Squares::Draw(std::vector<Colors *> shaders, glm::mat4 MVP) {
     std::vector<float> edges;
 
@@ -143,46 +183,6 @@ void Squares::Draw(std::vector<Colors *> shaders, glm::mat4 MVP) {
     glDeleteVertexArrays(1, &VertexArrayID);
     glDeleteBuffers(1, &vertexbuffer);
 }
-
-void Squares::Init(float size) {
-    const float a = 0.16f;
-
-    CordsSquares new_cords = GetCords();
-    
-    all_sides.frontLeftBottom[0] = new_cords.x - (a * size);
-    all_sides.frontLeftBottom[1] = new_cords.y - (a * size);
-    all_sides.frontLeftBottom[2] = new_cords.z - (a * size);
-
-    all_sides.frontRightBottom[0] = new_cords.x + (a * size);
-    all_sides.frontRightBottom[1] = new_cords.y - (a * size);
-    all_sides.frontRightBottom[2] = new_cords.z - (a * size);
-
-    all_sides.frontRightUp[0] = new_cords.x + (a * size);
-    all_sides.frontRightUp[1] = new_cords.y + (a * size);
-    all_sides.frontRightUp[2] = new_cords.z - (a * size);
-
-    all_sides.frontLeftUp[0] = new_cords.x - (a * size);
-    all_sides.frontLeftUp[1] = new_cords.y + (a * size);
-    all_sides.frontLeftUp[2] = new_cords.z - (a * size);
-
-    all_sides.backLeftBottom[0] = new_cords.x - (a * size);
-    all_sides.backLeftBottom[1] = new_cords.y - (a * size);
-    all_sides.backLeftBottom[2] = new_cords.z + (a * size);
-
-    all_sides.backRightBottom[0] = new_cords.x + (a * size);
-    all_sides.backRightBottom[1] = new_cords.y - (a * size);
-    all_sides.backRightBottom[2] = new_cords.z + (a * size);
-
-    all_sides.backLeftUp[0] = new_cords.x - (a * size);
-    all_sides.backLeftUp[1] = new_cords.y + (a * size);
-    all_sides.backLeftUp[2] = new_cords.z + (a * size);
-
-    all_sides.backRightUp[0] = new_cords.x + (a * size);
-    all_sides.backRightUp[1] = new_cords.y + (a * size);
-    all_sides.backRightUp[2] = new_cords.z + (a * size);
-
-}
-
 
 void Squares::turnright() {
     char newsides[6];
