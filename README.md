@@ -12,6 +12,47 @@
 9. [Гидра или не гидра, вот в чём вопрос...](https://github.com/ScreoX/itmo_activity_2_semester/blob/main/Algo_Labs/Lab_1/task_9.cpp) [(условие)](https://github.com/ScreoX/itmo_activity_2_semester/blob/main/%D0%A3%D1%81%D0%BB%D0%BE%D0%B2%D0%B8%D1%8F%20%D0%BB%D0%B0%D0%B1%D0%BE%D1%80%D0%B0%D1%82%D0%BE%D1%80%D0%BD%D1%8B%D1%85%20%D1%80%D0%B0%D0%B1%D0%BE%D1%82%20%D0%90%D0%BB%D0%B3%D0%BE/Lab_1/task_9.jpg)
 10. [Подвал Франкенштейна](https://github.com/ScreoX/itmo_activity_2_semester/blob/main/Algo_Labs/Lab_1/task_10.cpp) [(условие)](https://github.com/ScreoX/itmo_activity_2_semester/blob/main/%D0%A3%D1%81%D0%BB%D0%BE%D0%B2%D0%B8%D1%8F%20%D0%BB%D0%B0%D0%B1%D0%BE%D1%80%D0%B0%D1%82%D0%BE%D1%80%D0%BD%D1%8B%D1%85%20%D1%80%D0%B0%D0%B1%D0%BE%D1%82%20%D0%90%D0%BB%D0%B3%D0%BE/Lab_1/task_10.jpg)
 
+
+## Lab 2 (Graphs, shortest paths)
+### Tasks: <br />
+1. [Конец или Начало](https://github.com/ScreoX/itmo_activity_2_semester/blob/main/Algo_Labs/Lab_2/task_1.cpp)
+2. [3001: Галактическая Илиада](https://github.com/ScreoX/itmo_activity_2_semester/blob/main/Algo_Labs/Lab_2/task_2.cpp) 
+3. [Если я вас больше не увижу](https://github.com/ScreoX/itmo_activity_2_semester/blob/main/Algo_Labs/Lab_2/task_3.cpp)
+4. [You can, Ken!](https://github.com/ScreoX/itmo_activity_2_semester/blob/main/Algo_Labs/Lab_2/task_4.cpp)
+5. [Ничто нигде и никогда](https://github.com/ScreoX/itmo_activity_2_semester/blob/main/Algo_Labs/Lab_2/task_5.cpp)
+6. [Сокровенные желания](https://github.com/ScreoX/itmo_activity_2_semester/blob/main/Algo_Labs/Lab_2/task_6.cpp)
+7. [Бегущий по графу 2к39](https://github.com/ScreoX/itmo_activity_2_semester/blob/main/Algo_Labs/Lab_2/task_7.cpp)
+8. [Carpe diem](https://github.com/ScreoX/itmo_activity_2_semester/blob/main/Algo_Labs/Lab_2/task_8.cpp)
+9. [Вернись живым](https://github.com/ScreoX/itmo_activity_2_semester/blob/main/Algo_Labs/Lab_2/task_9.cpp)
+10. [Начало или Конец](https://github.com/ScreoX/itmo_activity_2_semester/blob/main/Algo_Labs/Lab_2/task_10.cpp)
+
+
+## Lab 3 (Graphs, MST)
+### Tasks: <br />
+1. [АРАТАКИ РЕЙГЕН](https://github.com/ScreoX/itmo_activity_2_semester/blob/main/Algo_Labs/Lab_2/task_1.cpp)
+2. [Истребители демонов](https://github.com/ScreoX/itmo_activity_2_semester/blob/main/Algo_Labs/Lab_2/task_2.cpp) 
+3. [Ведьмина служба доставки](https://github.com/ScreoX/itmo_activity_2_semester/blob/main/Algo_Labs/Lab_2/task_3.cpp)
+4. [Очень яблок хочется...](https://github.com/ScreoX/itmo_activity_2_semester/blob/main/Algo_Labs/Lab_2/task_4.cpp)
+5. [Грязные делишки](https://github.com/ScreoX/itmo_activity_2_semester/blob/main/Algo_Labs/Lab_2/task_5.cpp)
+6. [Результат двух миллионов лет работы](https://github.com/ScreoX/itmo_activity_2_semester/blob/main/Algo_Labs/Lab_2/task_6.cpp)
+7. [Побег Поньо](https://github.com/ScreoX/itmo_activity_2_semester/blob/main/Algo_Labs/Lab_2/task_7.cpp)
+8. [Мугивары](https://github.com/ScreoX/itmo_activity_2_semester/blob/main/Algo_Labs/Lab_2/task_8.cpp)
+9. [Конан из Акацуки](https://github.com/ScreoX/itmo_activity_2_semester/blob/main/Algo_Labs/Lab_2/task_9.cpp)
+10. [А где Канеки?](https://github.com/ScreoX/itmo_activity_2_semester/blob/main/Algo_Labs/Lab_2/task_10.cpp)
+
+
+## Lab 4 (Graphs, matchings and flows)
+### Tasks: <br />
+1. [Борьба за сахар](https://github.com/ScreoX/itmo_activity_2_semester/blob/main/Algo_Labs/Lab_4/task_1.cpp)
+2. [Шёпот далёких звёзд](https://github.com/ScreoX/itmo_activity_2_semester/blob/main/Algo_Labs/Lab_4/task_2.cpp) 
+3. [А можно я с тобой?](https://github.com/ScreoX/itmo_activity_2_semester/blob/main/Algo_Labs/Lab_4/task_3.cpp)
+4. [Я не продаюсь, но...](https://github.com/ScreoX/itmo_activity_2_semester/blob/main/Algo_Labs/Lab_4/task_4.cpp)
+5. [La Seine](https://github.com/ScreoX/itmo_activity_2_semester/blob/main/Algo_Labs/Lab_4/task_5.cpp)
+6. [Летняя тоска Светланы](https://github.com/ScreoX/itmo_activity_2_semester/blob/main/Algo_Labs/Lab_4/task_6.cpp)
+7. [Нighway of a lifetime](https://github.com/ScreoX/itmo_activity_2_semester/blob/main/Algo_Labs/Lab_4/task_7.cpp)
+8. [Близкие звёзды](https://github.com/ScreoX/itmo_activity_2_semester/blob/main/Algo_Labs/Lab_4/task_8.cpp)
+
+
 # Основы программирования
 ## [Lab1 - Передача значения по ссылке](https://github.com/ScreoX/itmo_activity_2_semester-/tree/main/Lab_1)
 ### [Условие](https://github.com/ScreoX/itmo_activity_2_semester-/blob/main/%D0%A3%D1%81%D0%BB%D0%BE%D0%B2%D0%B8%D1%8F%20%D0%9B%D0%B0%D0%B1%D0%BE%D1%80%D0%B0%D1%82%D0%BE%D1%80%D0%BD%D1%8B%D1%85%20%D0%A0%D0%B0%D0%B1%D0%BE%D1%82%20%D0%9E%D0%9F/%D0%9B%D0%B0%D0%B1%D0%BE%D1%80%D0%B0%D1%82%D0%BE%D1%80%D0%BD%D0%B0%D1%8F%20%D1%80%D0%B0%D0%B1%D0%BE%D1%82%D0%B0%20%E2%84%961.pdf)
