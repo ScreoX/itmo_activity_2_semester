@@ -54,31 +54,31 @@
 
 
 # Основы программирования
-## [Lab1 - Передача значения по ссылке](https://github.com/ScreoX/itmo_activity_2_semester-/tree/main/Lab_1)
+## [Lab1 - Передача значения по ссылке](https://github.com/ScreoX/itmo_activity_2_semester/tree/main/Programming_Basics_Labs/Lab_1)
 ### [Условие](https://github.com/ScreoX/itmo_activity_2_semester-/blob/main/%D0%A3%D1%81%D0%BB%D0%BE%D0%B2%D0%B8%D1%8F%20%D0%9B%D0%B0%D0%B1%D0%BE%D1%80%D0%B0%D1%82%D0%BE%D1%80%D0%BD%D1%8B%D1%85%20%D0%A0%D0%B0%D0%B1%D0%BE%D1%82%20%D0%9E%D0%9F/%D0%9B%D0%B0%D0%B1%D0%BE%D1%80%D0%B0%D1%82%D0%BE%D1%80%D0%BD%D0%B0%D1%8F%20%D1%80%D0%B0%D0%B1%D0%BE%D1%82%D0%B0%20%E2%84%961.pdf)
 
-## [Lab2 - Классы](https://github.com/ScreoX/itmo_activity_2_semester-/tree/main/Lab_2)
+## [Lab2 - Классы](https://github.com/ScreoX/itmo_activity_2_semester-/tree/main/Programming_Basics_Labs/Lab_2)
 ### [Условие](https://github.com/ScreoX/itmo_activity_2_semester-/blob/main/%D0%A3%D1%81%D0%BB%D0%BE%D0%B2%D0%B8%D1%8F%20%D0%9B%D0%B0%D0%B1%D0%BE%D1%80%D0%B0%D1%82%D0%BE%D1%80%D0%BD%D1%8B%D1%85%20%D0%A0%D0%B0%D0%B1%D0%BE%D1%82%20%D0%9E%D0%9F/%D0%9B%D0%B0%D0%B1%D0%BE%D1%80%D0%B0%D1%82%D0%BE%D1%80%D0%BD%D0%B0%D1%8F%20%D1%80%D0%B0%D0%B1%D0%BE%D1%82%D0%B0%20%E2%84%962.pdf)
 
-## [Lab3 - Перегрузка операторов](https://github.com/ScreoX/itmo_activity_2_semester-/tree/main/Lab_3)
+## [Lab3 - Перегрузка операторов](https://github.com/ScreoX/itmo_activity_2_semester-/tree/main/Programming_Basics_Labs/Lab_3)
 ### [Условие](https://github.com/ScreoX/itmo_activity_2_semester-/blob/main/%D0%A3%D1%81%D0%BB%D0%BE%D0%B2%D0%B8%D1%8F%20%D0%9B%D0%B0%D0%B1%D0%BE%D1%80%D0%B0%D1%82%D0%BE%D1%80%D0%BD%D1%8B%D1%85%20%D0%A0%D0%B0%D0%B1%D0%BE%D1%82%20%D0%9E%D0%9F/%D0%9B%D0%B0%D0%B1%D0%BE%D1%80%D0%B0%D1%82%D0%BE%D1%80%D0%BD%D0%B0%D1%8F%20%D1%80%D0%B0%D0%B1%D0%BE%D1%82%D0%B0%20%E2%84%963.pdf)
 
-## [Lab4 - Виртуальные функции](https://github.com/ScreoX/itmo_activity_2_semester-/tree/main/Lab_4)
+## [Lab4 - Виртуальные функции](https://github.com/ScreoX/itmo_activity_2_semester-/tree/main/Programming_Basics_Labs/Lab_4)
 ### [Условие](https://github.com/ScreoX/itmo_activity_2_semester-/blob/main/%D0%A3%D1%81%D0%BB%D0%BE%D0%B2%D0%B8%D1%8F%20%D0%9B%D0%B0%D0%B1%D0%BE%D1%80%D0%B0%D1%82%D0%BE%D1%80%D0%BD%D1%8B%D1%85%20%D0%A0%D0%B0%D0%B1%D0%BE%D1%82%20%D0%9E%D0%9F/%D0%9B%D0%B0%D0%B1%D0%BE%D1%80%D0%B0%D1%82%D0%BE%D1%80%D0%BD%D0%B0%D1%8F%20%D1%80%D0%B0%D0%B1%D0%BE%D1%82%D0%B0%20%E2%84%964.pdf)
 
-## [Lab5 - Шаблоны. Исключения](https://github.com/ScreoX/itmo_activity_2_semester/tree/main/Lab_5)
+## [Lab5 - Шаблоны. Исключения](https://github.com/ScreoX/itmo_activity_2_semester/tree/main/Programming_Basics_Labs/Lab_5)
 ### [Условие](https://github.com/ScreoX/itmo_activity_2_semester/blob/main/%D0%A3%D1%81%D0%BB%D0%BE%D0%B2%D0%B8%D1%8F%20%D0%9B%D0%B0%D0%B1%D0%BE%D1%80%D0%B0%D1%82%D0%BE%D1%80%D0%BD%D1%8B%D1%85%20%D0%A0%D0%B0%D0%B1%D0%BE%D1%82%20%D0%9E%D0%9F/%D0%9B%D0%B0%D0%B1%D0%BE%D1%80%D0%B0%D1%82%D0%BE%D1%80%D0%BD%D0%B0%D1%8F%20%D1%80%D0%B0%D0%B1%D0%BE%D1%82%D0%B0%20%E2%84%965.pdf)
 
-## [Lab6 - Контейнеры STL. Итераторы](https://github.com/ScreoX/itmo_activity_2_semester/tree/main/Lab_6)
+## [Lab6 - Контейнеры STL. Итераторы](https://github.com/ScreoX/itmo_activity_2_semester/tree/main/Programming_Basics_Labs/Lab_6)
 ### [Условие](https://github.com/ScreoX/itmo_activity_2_semester/blob/main/%D0%A3%D1%81%D0%BB%D0%BE%D0%B2%D0%B8%D1%8F%20%D0%9B%D0%B0%D0%B1%D0%BE%D1%80%D0%B0%D1%82%D0%BE%D1%80%D0%BD%D1%8B%D1%85%20%D0%A0%D0%B0%D0%B1%D0%BE%D1%82%20%D0%9E%D0%9F/%D0%9B%D0%B0%D0%B1%D0%BE%D1%80%D0%B0%D1%82%D0%BE%D1%80%D0%BD%D0%B0%D1%8F%20%D1%80%D0%B0%D0%B1%D0%BE%D1%82%D0%B0%20%E2%84%966.pdf)
 
-## [Lab7 - Кольцевой буфер](https://github.com/ScreoX/itmo_activity_2_semester/tree/main/Lab_7)
+## [Lab7 - Кольцевой буфер](https://github.com/ScreoX/itmo_activity_2_semester/tree/main/Programming_Basics_Labs/Lab_7)
 ### [Условие](https://github.com/ScreoX/itmo_activity_2_semester/blob/main/%D0%A3%D1%81%D0%BB%D0%BE%D0%B2%D0%B8%D1%8F%20%D0%9B%D0%B0%D0%B1%D0%BE%D1%80%D0%B0%D1%82%D0%BE%D1%80%D0%BD%D1%8B%D1%85%20%D0%A0%D0%B0%D0%B1%D0%BE%D1%82%20%D0%9E%D0%9F/%D0%9B%D0%B0%D0%B1%D0%BE%D1%80%D0%B0%D1%82%D0%BE%D1%80%D0%BD%D0%B0%D1%8F%20%D1%80%D0%B0%D0%B1%D0%BE%D1%82%D0%B0%20%E2%84%967%20.pdf)
 
 
-## [Lab8 - Кубик Рубика](https://github.com/ScreoX/itmo_activity_2_semester/tree/main/Lab_8)
+## [Lab8 - Кубик Рубика](https://github.com/ScreoX/itmo_activity_2_semester/tree/main/Programming_Basics_Labs/Lab_8)
 ### [Условие](https://github.com/ScreoX/itmo_activity_2_semester/blob/main/%D0%A3%D1%81%D0%BB%D0%BE%D0%B2%D0%B8%D1%8F%20%D0%9B%D0%B0%D0%B1%D0%BE%D1%80%D0%B0%D1%82%D0%BE%D1%80%D0%BD%D1%8B%D1%85%20%D0%A0%D0%B0%D0%B1%D0%BE%D1%82%20%D0%9E%D0%9F/%D0%9B%D0%B0%D0%B1%D0%BE%D1%80%D0%B0%D1%82%D0%BE%D1%80%D0%BD%D0%B0%D1%8F%20%D1%80%D0%B0%D0%B1%D0%BE%D1%82%D0%B0%20%E2%84%968%20%D0%9A%D1%83%D0%B1%D0%B8%D0%BA%20%D0%A0%D1%83%D0%B1%D0%B8%D0%BA%D0%B0.pdf)
 
 
-## [Lab9 - REST](https://github.com/ScreoX/itmo_activity_2_semester/tree/main/Lab_9)
+## [Lab9 - REST](https://github.com/ScreoX/itmo_activity_2_semester/tree/main/Programming_Basics_Labs/Lab_9)
 ### [Условие](https://github.com/ScreoX/itmo_activity_2_semester/blob/main/%D0%A3%D1%81%D0%BB%D0%BE%D0%B2%D0%B8%D1%8F%20%D0%9B%D0%B0%D0%B1%D0%BE%D1%80%D0%B0%D1%82%D0%BE%D1%80%D0%BD%D1%8B%D1%85%20%D0%A0%D0%B0%D0%B1%D0%BE%D1%82%20%D0%9E%D0%9F/%D0%9B%D0%B0%D0%B1%D0%BE%D1%80%D0%B0%D1%82%D0%BE%D1%80%D0%BD%D0%B0%D1%8F%20%D1%80%D0%B0%D0%B1%D0%BE%D1%82%D0%B0%20%E2%84%969%20REST.pdf)
