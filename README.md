@@ -53,6 +53,27 @@
 8. [Близкие звёзды](https://github.com/ScreoX/itmo_activity_2_semester/blob/main/Algo_Labs/Lab_4/task_8.cpp) [(условие)](https://github.com/ScreoX/itmo_activity_2_semester/blob/main/%D0%A3%D1%81%D0%BB%D0%BE%D0%B2%D0%B8%D1%8F%20%D0%BB%D0%B0%D0%B1%D0%BE%D1%80%D0%B0%D1%82%D0%BE%D1%80%D0%BD%D1%8B%D1%85%20%D1%80%D0%B0%D0%B1%D0%BE%D1%82%20%D0%90%D0%BB%D0%B3%D0%BE/Lab_4/task_8.jpg)
 
 
+## Lab 5 (Hashes)
+### Tasks: <br />
+1. [Гвоздики](https://github.com/ScreoX/itmo_activity_2_semester/blob/main/Algo_Labs/Lab_5/task_1.cpp) [(условие)](https://github.com/ScreoX/itmo_activity_2_semester/blob/main/%D0%A3%D1%81%D0%BB%D0%BE%D0%B2%D0%B8%D1%8F%20%D0%BB%D0%B0%D0%B1%D0%BE%D1%80%D0%B0%D1%82%D0%BE%D1%80%D0%BD%D1%8B%D1%85%20%D1%80%D0%B0%D0%B1%D0%BE%D1%82%20%D0%90%D0%BB%D0%B3%D0%BE/Lab_5/task_1.jpg)
+2. [Пикник на обочине](https://github.com/ScreoX/itmo_activity_2_semester/blob/main/Algo_Labs/Lab_5/task_2.cpp) [(условие)](https://github.com/ScreoX/itmo_activity_2_semester/blob/main/%D0%A3%D1%81%D0%BB%D0%BE%D0%B2%D0%B8%D1%8F%20%D0%BB%D0%B0%D0%B1%D0%BE%D1%80%D0%B0%D1%82%D0%BE%D1%80%D0%BD%D1%8B%D1%85%20%D1%80%D0%B0%D0%B1%D0%BE%D1%82%20%D0%90%D0%BB%D0%B3%D0%BE/Lab_5/task_2.jpg)
+3. [Что же такое множество?](https://github.com/ScreoX/itmo_activity_2_semester/blob/main/Algo_Labs/Lab_5/task_3.cpp) [(условие)](https://github.com/ScreoX/itmo_activity_2_semester/blob/main/%D0%A3%D1%81%D0%BB%D0%BE%D0%B2%D0%B8%D1%8F%20%D0%BB%D0%B0%D0%B1%D0%BE%D1%80%D0%B0%D1%82%D0%BE%D1%80%D0%BD%D1%8B%D1%85%20%D1%80%D0%B0%D0%B1%D0%BE%D1%82%20%D0%90%D0%BB%D0%B3%D0%BE/Lab_5/task_3.jpg)
+4. [Тест](https://github.com/ScreoX/itmo_activity_2_semester/blob/main/Algo_Labs/Lab_5/task_4.cpp) [(условие)](https://github.com/ScreoX/itmo_activity_2_semester/blob/main/%D0%A3%D1%81%D0%BB%D0%BE%D0%B2%D0%B8%D1%8F%20%D0%BB%D0%B0%D0%B1%D0%BE%D1%80%D0%B0%D1%82%D0%BE%D1%80%D0%BD%D1%8B%D1%85%20%D1%80%D0%B0%D0%B1%D0%BE%D1%82%20%D0%90%D0%BB%D0%B3%D0%BE/Lab_5/task_4.jpg)
+5. [Биба и Боба](https://github.com/ScreoX/itmo_activity_2_semester/blob/main/Algo_Labs/Lab_5/task_5.cpp) [(условие)](https://github.com/ScreoX/itmo_activity_2_semester/blob/main/%D0%A3%D1%81%D0%BB%D0%BE%D0%B2%D0%B8%D1%8F%20%D0%BB%D0%B0%D0%B1%D0%BE%D1%80%D0%B0%D1%82%D0%BE%D1%80%D0%BD%D1%8B%D1%85%20%D1%80%D0%B0%D0%B1%D0%BE%D1%82%20%D0%90%D0%BB%D0%B3%D0%BE/Lab_5/task_5.jpg)
+6. [Три друга 3: Кукушка](https://github.com/ScreoX/itmo_activity_2_semester/blob/main/Algo_Labs/Lab_5/task_6.cpp) [(условие)](https://github.com/ScreoX/itmo_activity_2_semester/blob/main/%D0%A3%D1%81%D0%BB%D0%BE%D0%B2%D0%B8%D1%8F%20%D0%BB%D0%B0%D0%B1%D0%BE%D1%80%D0%B0%D1%82%D0%BE%D1%80%D0%BD%D1%8B%D1%85%20%D1%80%D0%B0%D0%B1%D0%BE%D1%82%20%D0%90%D0%BB%D0%B3%D0%BE/Lab_5/task_6.jpg)
+7. [Катин лес](https://github.com/ScreoX/itmo_activity_2_semester/blob/main/Algo_Labs/Lab_5/task_7.cpp) [(условие)](https://github.com/ScreoX/itmo_activity_2_semester/blob/main/%D0%A3%D1%81%D0%BB%D0%BE%D0%B2%D0%B8%D1%8F%20%D0%BB%D0%B0%D0%B1%D0%BE%D1%80%D0%B0%D1%82%D0%BE%D1%80%D0%BD%D1%8B%D1%85%20%D1%80%D0%B0%D0%B1%D0%BE%D1%82%20%D0%90%D0%BB%D0%B3%D0%BE/Lab_5/task_7.jpg)
+
+
+## Lab 6 (Strings)
+### Tasks: <br />
+1. [1984](https://github.com/ScreoX/itmo_activity_2_semester/blob/main/Algo_Labs/Lab_6/task_1.cpp) [(условие)](https://github.com/ScreoX/itmo_activity_2_semester/blob/main/%D0%A3%D1%81%D0%BB%D0%BE%D0%B2%D0%B8%D1%8F%20%D0%BB%D0%B0%D0%B1%D0%BE%D1%80%D0%B0%D1%82%D0%BE%D1%80%D0%BD%D1%8B%D1%85%20%D1%80%D0%B0%D0%B1%D0%BE%D1%82%20%D0%90%D0%BB%D0%B3%D0%BE/Lab_6/task_1.jpg)
+2. [Хогвартс](https://github.com/ScreoX/itmo_activity_2_semester/blob/main/Algo_Labs/Lab_6/task_2.cpp) [(условие)](https://github.com/ScreoX/itmo_activity_2_semester/blob/main/%D0%A3%D1%81%D0%BB%D0%BE%D0%B2%D0%B8%D1%8F%20%D0%BB%D0%B0%D0%B1%D0%BE%D1%80%D0%B0%D1%82%D0%BE%D1%80%D0%BD%D1%8B%D1%85%20%D1%80%D0%B0%D0%B1%D0%BE%D1%82%20%D0%90%D0%BB%D0%B3%D0%BE/Lab_6/task_2.jpg)
+3. [Лиана Клубина](https://github.com/ScreoX/itmo_activity_2_semester/blob/main/Algo_Labs/Lab_6/task_3.cpp) [(условие)](https://github.com/ScreoX/itmo_activity_2_semester/blob/main/%D0%A3%D1%81%D0%BB%D0%BE%D0%B2%D0%B8%D1%8F%20%D0%BB%D0%B0%D0%B1%D0%BE%D1%80%D0%B0%D1%82%D0%BE%D1%80%D0%BD%D1%8B%D1%85%20%D1%80%D0%B0%D0%B1%D0%BE%D1%82%20%D0%90%D0%BB%D0%B3%D0%BE/Lab_6/task_3.jpg)
+5. [Junior-библиотекарь](https://github.com/ScreoX/itmo_activity_2_semester/blob/main/Algo_Labs/Lab_6/task_5.cpp) [(условие)](https://github.com/ScreoX/itmo_activity_2_semester/blob/main/%D0%A3%D1%81%D0%BB%D0%BE%D0%B2%D0%B8%D1%8F%20%D0%BB%D0%B0%D0%B1%D0%BE%D1%80%D0%B0%D1%82%D0%BE%D1%80%D0%BD%D1%8B%D1%85%20%D1%80%D0%B0%D0%B1%D0%BE%D1%82%20%D0%90%D0%BB%D0%B3%D0%BE/Lab_6/task_5.jpg)
+6. [Секретная служба](https://github.com/ScreoX/itmo_activity_2_semester/blob/main/Algo_Labs/Lab_6/task_6.cpp) [(условие)](https://github.com/ScreoX/itmo_activity_2_semester/blob/main/%D0%A3%D1%81%D0%BB%D0%BE%D0%B2%D0%B8%D1%8F%20%D0%BB%D0%B0%D0%B1%D0%BE%D1%80%D0%B0%D1%82%D0%BE%D1%80%D0%BD%D1%8B%D1%85%20%D1%80%D0%B0%D0%B1%D0%BE%D1%82%20%D0%90%D0%BB%D0%B3%D0%BE/Lab_6/task_6.jpg)
+
+
+
 # Основы программирования
 ## [Lab1 - Передача значения по ссылке](https://github.com/ScreoX/itmo_activity_2_semester/tree/main/Programming_Basics_Labs/Lab_1)
 ### [Условие](https://github.com/ScreoX/itmo_activity_2_semester-/blob/main/%D0%A3%D1%81%D0%BB%D0%BE%D0%B2%D0%B8%D1%8F%20%D0%9B%D0%B0%D0%B1%D0%BE%D1%80%D0%B0%D1%82%D0%BE%D1%80%D0%BD%D1%8B%D1%85%20%D0%A0%D0%B0%D0%B1%D0%BE%D1%82%20%D0%9E%D0%9F/%D0%9B%D0%B0%D0%B1%D0%BE%D1%80%D0%B0%D1%82%D0%BE%D1%80%D0%BD%D0%B0%D1%8F%20%D1%80%D0%B0%D0%B1%D0%BE%D1%82%D0%B0%20%E2%84%961.pdf)
